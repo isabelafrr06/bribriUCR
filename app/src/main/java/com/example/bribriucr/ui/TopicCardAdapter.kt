@@ -1,5 +1,7 @@
 package com.example.bribriucr.ui
 
+import android.content.Context
+import android.graphics.BitmapFactory
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -9,7 +11,7 @@ import com.example.bribriucr.R
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class TopicCardAdapter(val topicCard: List<TopicCard>):
+class TopicCardAdapter(val topicCard: List<TopicCard>, private val context: Context,):
     RecyclerView.Adapter<TopicCardAdapter.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopicCardAdapter.ItemViewHolder {
@@ -18,7 +20,17 @@ class TopicCardAdapter(val topicCard: List<TopicCard>):
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.itemName.text = topicCard[position].name
-        holder.itemPhoto.text = topicCard[position].image
+        //holder.itemPhoto.setImageResource(topicCard[position].image)
+        val imageIdString = topicCard[position].image  // Assuming image is a string
+        val imageId: Int? = imageIdString?.toIntOrNull()  // Handle potential conversion errors
+
+        if (imageId != null) {
+            val image = context.resources.getDrawable(imageId)
+            holder.itemPhoto.setImageDrawable(image)
+        } else {
+            // Handle case where image ID conversion fails (optional: set default image)
+        }
+
         holder.itemPercentage.text = topicCard[position].percentage
         //holder.itemPhoto = (topicCard[position].image.)
     }
@@ -34,6 +46,6 @@ class TopicCardAdapter(val topicCard: List<TopicCard>):
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemName: TextView = itemView.findViewById(R.id.item_name)
         var itemPercentage: TextView = itemView.findViewById(R.id.percentage)
-        var itemPhoto: TextView = itemView.findViewById(R.id.item_photo)
+        var itemPhoto: ImageView = itemView.findViewById(R.id.item_photo)
     }
 }

@@ -4,30 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
-    android:focusable="auto"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
-    card_view:cardBackgroundColor="@color/yellow"
+    android:background="?android:attr/selectableItemBackground"
+    android:focusable="auto"
+    card_view:cardBackgroundColor="@color/dark_blue"
     card_view:contentPadding="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
+        android:background="@color/light_blue"
+        android:elevation="@dimen/activity_horizontal_margin"
+        android:gravity="start"
         android:orientation="vertical"
-        android:padding="15dp"
-        android:background="@android:color/white">
+        android:padding="15dp">
 
 
-        <TextView
+        <ImageView
             android:id="@+id/item_photo"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:text="Photo"
+            android:text="@string/imagen"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="@color/white"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
@@ -36,10 +38,11 @@
             android:id="@+id/item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
+            android:text="@string/nombre"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintEnd_toStartOf="@+id/arrowImage"
             card_view:layout_constraintStart_toEndOf="@+id/item_photo"
             card_view:layout_constraintTop_toTopOf="parent" />
 
@@ -47,13 +50,29 @@
             android:id="@+id/percentage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Item"
+            android:text="@string/item"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintEnd_toStartOf="@+id/arrowImage"
             card_view:layout_constraintStart_toEndOf="@+id/item_photo"
             card_view:layout_constraintTop_toBottomOf="@+id/item_name" />
+
+        <ImageView
+            android:id="@+id/arrowImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:background="@color/light_blue"
+            android:focusable="auto"
+            android:contentDescription="@string/flecha_derecha"
+            android:foreground="@drawable/gmts_quantum_ic_chevron_right_white_24"
+            android:padding="1dp"
+
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,18 +1,23 @@
 package com.example.bribriucr.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bribriucr.R
 import com.example.bribriucr.databinding.FragmentHomeBinding
+import com.example.bribriucr.ui.TopicCard
+import com.example.bribriucr.ui.TopicCardAdapter
 
-class HomeFragment : Fragment() {
+
+class HomeFragment(private val homeModel: HomeModel, context: Context) : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
+    private val listaTemas = ArrayList<TopicCard>()
+    private val adapter = TopicCardAdapter(listaTemas, context)
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -22,17 +27,21 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        binding.recyclerList.layoutManager = LinearLayoutManager(context)
+        binding.recyclerList.adapter = adapter
+        fetchTopicCards()
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        return binding.root
+    }
+
+    /**
+     * Fetches topic cards and updates the UI.
+     */
+    private fun fetchTopicCards() {
+        val topics = homeModel.fetchTopicCards()
+        listaTemas.addAll(topics)
     }
 
     override fun onDestroyView() {

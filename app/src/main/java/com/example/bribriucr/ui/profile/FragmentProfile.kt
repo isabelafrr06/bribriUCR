@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.bribriucr.databinding.FragmentNotificationsBinding
-import com.example.bribriucr.ui.profile.FragmentProfileViewModel
+import com.example.bribriucr.db.DbHelper
 
-class FragmentProfile : Fragment() {
+class FragmentProfile(dbHelper: DbHelper) : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
 
