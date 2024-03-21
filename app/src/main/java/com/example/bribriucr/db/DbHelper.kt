@@ -1,10 +1,12 @@
 package com.example.bribriucr.db
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import com.example.bribriucr.Categoria
 import com.example.bribriucr.Palabra
 import com.example.bribriucr.R
@@ -95,24 +97,14 @@ class DbHelper(context: Context) :
     override fun onCreate(sqLiteDatabase: SQLiteDatabase) {
         sqLiteDatabase.execSQL(create_TablaCategoriasReceta)
         sqLiteDatabase.execSQL(create_TablaPalabra)
-        /*sqLiteDatabase.execSQL(
-            "insert into $Tabla_Categoria(NombreCategoria) values (\"" + ctx!!.getString(R.string.carnes) + "\"),(\""
-                    + ctx.getString(R.string.verduras) + "\"),(\"" + ctx.getString(R.string.bebidas) + "\"),(\"" + ctx.getString(R.string.alimento) + "\")," +
-                    "(\"" + ctx.getString(R.string.utencilio) + "\"), (\"" + ctx.getString(R.string.paso) + "\")"
-        )*/
         sqLiteDatabase.beginTransaction()  // Start a transaction for efficiency
         try {
             val insertStatement = "INSERT INTO $Tabla_Categoria (NombreCategoria, ImagenCategoria) VALUES (?, ?)"
             val compiledStatement = sqLiteDatabase.compileStatement(insertStatement)
-
-            val categories = listOf(
-                "Carnes", "Verduras", "Bebidas", "Alimento", "Utencilio", "Recetas"
-            )
+            val categories = listOf("Animales", "Vegetales", "Utencilios", "Recetas")
             // Images representing each category
             val images = listOf(ctx.resources.getIdentifier("carne_asada1", "drawable", ctx.packageName).toString(),
                 ctx.resources.getIdentifier("bananomaduro", "drawable", ctx.packageName).toString(),
-                ctx.resources.getIdentifier("agua", "drawable", ctx.packageName).toString(),
-                ctx.resources.getIdentifier("cacao", "drawable", ctx.packageName).toString(),
                 ctx.resources.getIdentifier("cuchillo", "drawable", ctx.packageName).toString(),
                 ctx.resources.getIdentifier("chichas4", "drawable", ctx.packageName).toString())
 
@@ -121,7 +113,6 @@ class DbHelper(context: Context) :
                 compiledStatement.bindString(2, images[i])
                 compiledStatement.executeInsert()
             }
-
             sqLiteDatabase.setTransactionSuccessful()  // Commit changes if no errors
         } catch (e: Exception) {
             // Handle potential insert errors (optional)
@@ -144,40 +135,25 @@ class DbHelper(context: Context) :
         } catch (e: IOException) {
             e.printStackTrace()
         }
+        // Process data from recetario.json (with resource management)
         try {
+            val input = ctx.assets.open("recetario.json")
+            val reader = BufferedReader(InputStreamReader(input))
+            val stringBuilder = StringBuilder()
+            var line: String?
+            while (reader.readLine().also { line = it } != null) {
+                stringBuilder.append(line)
+            }
+            reader.close()
+            input.close()
+            val recetarioJson = stringBuilder.toString()
+
             val recetario = JSONObject(recetarioJson)
-            var list = recetario.getJSONArray("alimentos")
-            for (i in 0 until list.length()) {
-                val alimento = list.getJSONObject(i)
-                val imageName = alimento.getString("imagen")
-                val imageId = ctx.resources.getIdentifier(imageName, "drawable", ctx.packageName)  // Get ID
-                insertarAlimento(
-                    sqLiteDatabase, alimento.getString("nombre"),
-                    imageId.toString(),
-                    "android.resource://" + ctx.packageName + "/raw/" + alimento.getString("audio")
-                )
-            }
-            list = recetario.getJSONArray("utensilios")
-            for (i in 0 until list.length()) {
-                val utensilio = list.getJSONObject(i)
-                insertarUtensilio(
-                    sqLiteDatabase, utensilio.getString("nombre"),
-                    "android.resource://" + ctx.packageName + "/drawable/" + utensilio.getString("imagen"),
-                    "android.resource://" + ctx.packageName + "/raw/" + utensilio.getString("audio")
-                )
-            }
-            list = recetario.getJSONArray("pasos")
-            for (i in 0 until list.length()) {
-                val paso = list.getJSONObject(i)
-                insertarPaso(
-                    sqLiteDatabase, paso.getString("nombre"),
-                    paso.getString("texto"),
-                    "android.resource://" + ctx.packageName + "/drawable/" + paso.getString("imagen"),
-                    "android.resource://" + ctx.packageName + "/raw/" + paso.getString("audio")
-                )
-            }
+            insertDataFromRecetario(sqLiteDatabase, recetario)
+        } catch (e: IOException) {
+            Log.e(TAG, "Error processing recetario.json", e)
         } catch (e: JSONException) {
-            e.printStackTrace()
+            Log.e(TAG, "Error parsing JSON", e)
         }
 
         fun eliminarPalabra(nombre: String) {
@@ -186,9 +162,28 @@ class DbHelper(context: Context) :
                 "$ColumnaNombre = \'$nombre\'", null
             )
         }
-
     }
 
+    private fun insertDataFromRecetario(db: SQLiteDatabase, recetario: JSONObject) {
+        val categories = listOf("alimentos", "utensilios", "pasos")
+        for (category in categories) {
+            val list = recetario.getJSONArray(category)
+            for (i in 0 until list.length()) {
+                val item = list.getJSONObject(i)
+                val nombre = item.getString("nombre")
+                val imageName = item.getString("imagen")
+                val imageId = ctx.resources.getIdentifier(imageName, "drawable", ctx.packageName)
+                val rutaAudio = "android.resource://" + ctx.packageName + "/raw/" + item.getString("audio")
+
+                when (category) {
+                    "alimentos" -> insertarAlimento(db, nombre, imageId.toString(), rutaAudio)  // Insert food item
+                    "utensilios" -> insertarUtensilio(db, nombre, imageId.toString(), rutaAudio)  // Insert utensil
+                    "pasos" -> insertarPaso(db, nombre, item.getString("texto"), imageId.toString(), rutaAudio)  // Insert step
+                    else -> Log.e(TAG, "Unknown category: $category")
+                }
+            }
+        }
+    }
     override fun onUpgrade(sqLiteDatabase: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS $Tabla_Palabra")
         onCreate(sqLiteDatabase)

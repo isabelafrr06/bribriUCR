@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">bribriUCR</string>
+    <string name="app_name">Chakö̀ Bribri</string>
     <string name="title_home">Inicio</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notificaciones</string>
@@ -12,10 +12,12 @@
     <string name="alimento">Alimento</string>
     <string name="paso">Paso</string>
     <string name="utencilio">Utencilio</string>
-    <string name="aleatorio">Aleatorio</string>
+    <string name="aleatorio">Cualquiera</string>
     <string name="creditos">Créditos</string>
     <string name="imagen">Imagen</string>
     <string name="nombre">Nombre</string>
     <string name="item">Item</string>
     <string name="flecha_derecha"><![CDATA[>]]></string>
+    <string name="idioma">Idioma</string>
+    <string name="ayuda">Ayuda</string>
 </resources>
