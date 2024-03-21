@@ -16,7 +16,12 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
-
+/**
+ * Helper class for managing the application's database interactions.
+ *
+ * This class handles creating tables, inserting data, retrieving data, and
+ * upgrading the database schema when necessary.
+ */
 class DbHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
@@ -32,19 +37,27 @@ class DbHelper(context: Context) :
         private const val ColumnaCategoria = "NombreCategoria"
     }
 
-    val ctx: Context = context
+    private val ctx: Context = context
     // Table creation statements
-    val create_TablaPalabra =
+    val createTablapalabra =
         "CREATE TABLE $Tabla_Palabra( IdPalabra INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "$ColumnaNombre TEXT NOT NULL, " +
                 "$ColumnaImagen TEXT NOT NULL, " +
                 "$ColumnaAudio TEXT NOT NULL, " +
                 "NombreCategoria TEXT, " +
                 "CONSTRAINT FKCATEGORIA FOREIGN KEY(NombreCategoria) REFERENCES $Tabla_Categoria(NombreCategoria));"
-    val create_TablaCategoriasReceta =
+    val createTablaCategoriasReceta =
         "CREATE TABLE $Tabla_Categoria( IdCategoria INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "NombreCategoria TEXT NOT NULL, ImagenCategoria TEXT, PorcentajeCategoria INTEGER);"
-
+    /**
+     * Inserts a new food item into the database.
+     *
+     * @param db The writable database instance.
+     * @param nombre The name of the food item.
+     * @param rutaImagen The path to the image resource for the food item.
+     * @param rutaAudio The path to the audio resource for the food item.
+     * @return True if the insertion was successful, false otherwise.
+     */
     private fun insertarAlimento(db: SQLiteDatabase, nombre: String, rutaImagen: String,
                                  rutaAudio: String): Boolean {
 
@@ -58,6 +71,16 @@ class DbHelper(context: Context) :
         // Return true if insertion succeeded (row ID greater than 0), false otherwise
         return inserted != -1L
     }
+    /**
+     * Inserts a new step into the database.
+     *
+     * @param db The writable database instance.
+     * @param nombre The name of the step.
+     * @param texto The description of the step.
+     * @param rutaImagen The path to the image resource for the step.
+     * @param rutaAudio The path to the audio resource for the step.
+     * @return True if the insertion was successful, false otherwise.
+     */
     private fun insertarPaso(
         db:SQLiteDatabase,
         nombre: String,
@@ -77,10 +100,13 @@ class DbHelper(context: Context) :
     }
 
     /**
-     * Metodo encargado de formular una sentencia SQL para este quede almacenado en la base de datos
-     * @param nombre, el nombre del utencilio por insertar
-     * @param rutaImagen, contiene la ruta de la ubicacion de la imagen en los archivos de la aplicacion
-     * @param rutaAudio, contiene la ruta de la ubicacion de los audios en los archivos de la aplicacion
+     * Inserts a new utensil into the database.
+     *
+     * @param db The writable database instance.
+     * @param nombre The name of the utensil.
+     * @param rutaImagen The path to the image resource for the utensil.
+     * @param rutaAudio The path to the audio resource for the utensil.
+     * @return True if the insertion was successful, false otherwise.
      */
     fun insertarUtensilio(db: SQLiteDatabase, nombre: String, rutaImagen: String, rutaAudio: String): Boolean {
         val values = ContentValues().apply {
@@ -94,9 +120,17 @@ class DbHelper(context: Context) :
         return inserted != -1L
     }
 
+    /**
+     * Called when the database is first created.
+     *
+     * This method creates the tables for storing words (food items, utensils, steps) and categories.
+     * It also inserts initial category data from the "recetario.json" asset file.
+     *
+     * @param sqLiteDatabase The database instance.
+     */
     override fun onCreate(sqLiteDatabase: SQLiteDatabase) {
-        sqLiteDatabase.execSQL(create_TablaCategoriasReceta)
-        sqLiteDatabase.execSQL(create_TablaPalabra)
+        sqLiteDatabase.execSQL(createTablaCategoriasReceta)
+        sqLiteDatabase.execSQL(createTablapalabra)
         sqLiteDatabase.beginTransaction()  // Start a transaction for efficiency
         try {
             val insertStatement = "INSERT INTO $Tabla_Categoria (NombreCategoria, ImagenCategoria) VALUES (?, ?)"
@@ -184,22 +218,40 @@ class DbHelper(context: Context) :
             }
         }
     }
+    /**
+     * Called when the database needs to be upgraded.
+     *
+     * This method drops the existing table and recreates it with the new schema.
+     *
+     * @param sqLiteDatabase The database instance.
+     * @param oldVersion The old version number of the database.
+     * @param newVersion The new version number of the database.
+     */
     override fun onUpgrade(sqLiteDatabase: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS $Tabla_Palabra")
         onCreate(sqLiteDatabase)
     }
 
+    /* Inserts a new word (food item, utensil, step) into the database.
+    *
+    * @param palabra The word object containing information to insert.
+    */
     fun insertarPalabra(palabra: Palabra ){
         val db = writableDatabase
         val values = ContentValues().apply {
-            put(ColumnaNombre, palabra.NombrePalabra)
-            put(ColumnaImagen, palabra.RutaImagen)
-            put(ColumnaAudio, palabra.RutaAudio)
+            put(ColumnaNombre, palabra.nombrePalabra)
+            put(ColumnaImagen, palabra.rutaImagen)
+            put(ColumnaAudio, palabra.rutaAudio)
         }
         db.insert(Tabla_Palabra, null, values)
         db.close()
     }
-
+    /**
+     * Retrieves all categories from the database.
+     *
+     * @param sqLiteDatabase The database instance.
+     * @return A list of `Categoria` objects representing all categories.
+     */
     fun getCategorias(sqLiteDatabase: SQLiteDatabase): ArrayList<Categoria> {
         val query = "select * from $Tabla_Categoria;"
         val cursor: Cursor = sqLiteDatabase.rawQuery(query, null)

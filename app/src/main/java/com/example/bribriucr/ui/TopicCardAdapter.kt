@@ -1,11 +1,9 @@
 package com.example.bribriucr.ui
 
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bribriucr.R
 import android.view.LayoutInflater
@@ -14,7 +12,7 @@ import android.view.ViewGroup
 class TopicCardAdapter(val topicCard: List<TopicCard>, private val context: Context,):
     RecyclerView.Adapter<TopicCardAdapter.ItemViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopicCardAdapter.ItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val vista = LayoutInflater.from(parent.context).inflate(R.layout.card_topic, parent, false)
         return ItemViewHolder(vista)}
 
@@ -37,10 +35,6 @@ class TopicCardAdapter(val topicCard: List<TopicCard>, private val context: Cont
 
     override fun getItemCount(): Int {
         return topicCard.size
-    }
-
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        super.onAttachedToRecyclerView(recyclerView)
     }
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

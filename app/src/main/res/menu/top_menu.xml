@@ -8,4 +8,8 @@
         android:id="@+id/navigation_help"
         android:title="@string/ayuda"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/navigation_close"
+        android:title="@string/salir"
+        app:showAsAction="never"/>
 </menu>

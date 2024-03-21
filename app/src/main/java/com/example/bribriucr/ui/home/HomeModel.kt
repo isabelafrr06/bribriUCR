@@ -15,6 +15,5 @@ class HomeModel(private val dbHelper: DbHelper) {
         val rawTopics = dbHelper.getCategorias(db)
         // Convert raw data to TopicCard objects if data exists
         return rawTopics.map { TopicCard(it.nombreCategoria, it.rutaImagen, it.porcentaje.toString()) }
-            ?: emptyList()
     }
 }

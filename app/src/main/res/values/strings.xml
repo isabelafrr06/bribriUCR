@@ -12,12 +12,13 @@
     <string name="alimento">Alimento</string>
     <string name="paso">Paso</string>
     <string name="utencilio">Utencilio</string>
-    <string name="aleatorio">Cualquiera</string>
+    <string name="aleatorio">Ulìta̱ne̱</string>
     <string name="creditos">Créditos</string>
     <string name="imagen">Imagen</string>
     <string name="nombre">Nombre</string>
     <string name="item">Item</string>
     <string name="flecha_derecha"><![CDATA[>]]></string>
-    <string name="idioma">Idioma</string>
+    <string name="idioma">Ujtö̀</string>
     <string name="ayuda">Ayuda</string>
+    <string name="salir">Salir</string>
 </resources>

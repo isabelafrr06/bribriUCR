@@ -17,8 +17,7 @@ class HomeFragment(private val homeModel: HomeModel, context: Context) : Fragmen
     private var _binding: FragmentHomeBinding? = null
     private val listaTemas = ArrayList<TopicCard>()
     private val adapter = TopicCardAdapter(listaTemas, context)
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(

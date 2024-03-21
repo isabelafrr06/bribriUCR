@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
@@ -20,12 +19,19 @@ import com.example.bribriucr.ui.home.HomeModel
 import com.example.bribriucr.ui.profile.FragmentProfile
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.Locale
-
+/**
+ * The main activity class for the application. This class handles the overall application flow,
+ * navigation, and fragment management.
+ */
 class MainActivity : AppCompatActivity() {
 
     // Binding for accessing views in the layout
     private lateinit var binding: ActivityMainBinding
-
+    /**
+     * onCreate function is called when the activity is first created.
+     *
+     * @param savedInstanceState Bundle containing the data of the previous instance (if any).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val dbHelper = DbHelper(this)
@@ -43,20 +49,22 @@ class MainActivity : AppCompatActivity() {
         // ---- Navigation setup ----
         val navView: BottomNavigationView = binding.navView
         navView.post {
-            navView.setOnItemSelectedListener { it ->
+            navView.setOnItemSelectedListener {
                 when (it.itemId) {
                     R.id.navigation_home -> replaceFragment(HomeFragment(homeModel, this))
                     R.id.navigation_profile -> replaceFragment(FragmentProfile(dbHelper))
                     R.id.navigation_dashboard -> replaceFragment(DashboardFragment(dbHelper))
                     else -> {
-                        // Handle other navigation items (optional)
+                        // Handle other navigation items
                     }
                 }
                 true
             }
         }
     }
-
+    /**
+     * Function to display a dialog for language selection and update the application locale.
+     */
     private fun changeLanguage() {
         val listLang = arrayOf("Español", "Bribri")
         val mBuilder = AlertDialog.Builder(this)
@@ -77,11 +85,15 @@ class MainActivity : AppCompatActivity() {
         val mDialog = mBuilder.create()
         mDialog.show()
     }
-
+    /**
+     * Function to set the application locale based on the provided language code.
+     *
+     * @param lang The language code (e.g., "es" for Spanish).
+     */
     private fun setLocale(lang: String) {
         val locale = Locale(lang)
         Locale.setDefault(locale)
-        Log.d("MainActivity", "Locale changed to: $locale")
+        // Log.d("MainActivity", "Locale changed to: $locale")
         val config = Configuration()
         config.setLocale(locale)
         baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
@@ -94,7 +106,11 @@ class MainActivity : AppCompatActivity() {
         finish()  // Finish the current activity
         startActivity(intent)  // Start a new instance of MainActivity
     }
-
+    /**
+     * Function to replace the fragment container with a new fragment.
+     *
+     * @param fragment The fragment to be displayed.
+     */
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
@@ -114,9 +130,34 @@ class MainActivity : AppCompatActivity() {
                 changeLanguage()
                 return true
             }
+            R.id.navigation_help -> {
+                showHelp()
+                return true
+            }
+            R.id.navigation_close -> {
+                closeApp()
+                return true
+            }
             // ... other menu items
         }
         return super.onOptionsItemSelected(menuItem)
+    }
+    /**
+     * Function to terminate the activity, effectively closing the application.
+     */
+    private fun closeApp() {
+        finish()
+    }
+    /**
+     * Function to display a simple help dialog with application information.
+     */
+    private fun showHelp() {
+        val mBuilder = AlertDialog.Builder(this)
+        mBuilder.setTitle("Ayuda")
+        mBuilder.setMessage("Seleccione alguno de los botones con los distintos temas")
+        mBuilder.setPositiveButton("Aceptar", null)
+        val dialog = mBuilder.create()
+        dialog.show()
     }
 }
 
