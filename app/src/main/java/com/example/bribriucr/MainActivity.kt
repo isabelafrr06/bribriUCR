@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         // Database operations
         val db: SQLiteDatabase = dbHelper.writableDatabase
 
-        // ---- Navigation setup ----
+        // Navigation setup
         val navView: BottomNavigationView = binding.navView
         navView.post {
             navView.setOnItemSelectedListener {

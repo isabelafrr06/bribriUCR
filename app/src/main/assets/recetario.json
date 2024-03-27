@@ -1,8 +1,8 @@
 ﻿{
-    "alimentos" : [
+    "Animales" : [
         { 
             "nombre": "bàka",
-            "imagen": "baca",
+            "imagen": "vaca",
             "audio": "baka"
         },
         { 
@@ -30,90 +30,102 @@
             "imagen": "kochi",
             "audio": "chancho"
         },
-        { 
-            "nombre": "kalö́m",
-            "imagen": "platano",
-            "audio": "platano"
-        },
-        { 
+        {
             "nombre": "dakòl/dakòr",
             "imagen": "pez1",
             "audio": "pez1"
         },
-        { 
+        {
             "nombre": "dakúr arrôs/dukúr rròs",
             "imagen": "pez2",
             "audio": "pez2"
         },
-        { 
+        {
             "nombre": "ni̠mà̠ ichö́k/na̠mà̠ ichö́k",
             "imagen": "pez3",
             "audio": "pez3"
         },
-        { 
+        {
             "nombre": "ka̠lè̠m",
             "imagen": "pez4",
             "audio": "pez4"
         },
-        { 
+        {
             "nombre": "shawa’/shuwa",
             "imagen": "pez5",
             "audio": "pez5"
         },
-        { 
+        {
             "nombre": "sichìk /stchìk",
             "imagen": "pez6",
             "audio": "pez6"
         },
-        { 
+        {
             "nombre": "të̀brush / yë̀böwö",
             "imagen": "pez7",
             "audio": "pez7"
         },
-        { 
+        {
             "nombre": "tsaí̠ ni̠me̠ / tsaí̠ na̠me̠ / sinì ni̠me̠ / sinì na̠me̠",
             "imagen": "pez8",
             "audio": "pez8"
         },
-        { 
+        {
             "nombre": "wàtak",
             "imagen": "pez9",
             "audio": "pez9"
         },
-        { 
+        {
             "nombre": "ku̠ko̠’",
             "imagen": "guacamaya",
             "audio": "guacamaya"
         },
-        { 
+        {
             "nombre": "mu̠lùkayö / ku̠ku̠ wö̀ tsurùrù / ku̠ku̠lé̠ wö̀ sarùrù",
             "imagen": "mulukayo",
             "audio": "mulukayo"
         },
-        { 
+        {
             "nombre": "apà / pà",
             "imagen": "apa",
             "audio": "apa"
         },
-        { 
+        {
             "nombre": "tkù / tchù",
             "imagen": "tku",
             "audio": "tku"
         },
-        { 
+        {
             "nombre": "tsanè",
             "imagen": "tsane",
             "audio": "tsane"
         },
-        { 
+        {
             "nombre": "kaë̀",
             "imagen": "kae",
             "audio": "kae"
         },
-        { 
+        {
             "nombre": "tsiö̀",
             "imagen": "tucan",
             "audio": "tucan"
+        },
+        {
+            "nombre": "Ö̀ kö",
+            "imagen": "mohoso",
+            "audio": "tortuga"
+        },
+        {
+            "nombre": "tlók kuë̀",
+            "imagen": "tortugalagarto",
+            "audio": "tortuga"
+        }
+    ],
+    "Vegetales" : [
+        { 
+            "nombre": "kalö́m",
+            "imagen": "platano",
+            "audio": "platano"
         },
         { 
             "nombre": "balôbalo / blòblo",
@@ -129,11 +141,6 @@
             "nombre": "si͂́ / dapö̀",
             "imagen": "palmito",
             "audio": "palmito"
-        },
-        { 
-            "nombre": "tlók kuë̀",
-            "imagen": "tortugalagarto",
-            "audio": "tortuga"
         },
         { 
             "nombre": "mánawö",
@@ -186,11 +193,6 @@
             "audio": "quelite"
         },
         { 
-            "nombre": "Ö̀ kö",
-            "imagen": "mohoso",
-            "audio": "tortuga"
-        },
-        { 
             "nombre": "dikó / dakó",
             "imagen": "pejibaye",
             "audio": "pejibaye"
@@ -206,7 +208,7 @@
             "audio": "cacao"
         }
     ],
-    "utensilios": [
+    "Utensilios": [
         {
             "nombre": "ajkö́ /kö́",
             "imagen": "canasta",
@@ -268,639 +270,534 @@
             "audio": "batea"
         }
     ],
-    "pasos": [
+    "Pasos": [
         {
-            "nombre": "carneAsada1",
-            "texto": "Jkuö̀ tchèke, ikuli’ ska i wö̀ñè̠eke, ña̠’ bièketsa̠ e̠na̠ i ulà wö̀́ñè̠kelor, \nès añi̠ès  i ulà e̠na̠ ikalö̀ ajkuö̀ tchéeke.",
+            "nombre": "Jkuö̀ tchèke, ikuli’ ska i wö̀ñè̠eke, ña̠’ bièketsa̠ e̠na̠ i ulà wö̀́ñè̠kelor, \nès añi̠ès  i ulà e̠na̠ ikalö̀ ajkuö̀ tchéeke.",
             "imagen": "carne_asada1",
             "audio": "carneasada1"
         },
         {
-            "nombre": "carneAsada2",
-            "texto": "I wö̀ ttèkelor bitsì̠tsì̠ dicháë. ",
+            "nombre": "I wö̀ ttèkelor bitsì̠tsì̠ dicháë. ",
             "imagen": "carne_asada2",
             "audio": "carneasada2"
         },
         {
-            "nombre": "carneAsada3",
-            "texto": "Ès i síwè̠ke.",
+            "nombre": "Ès i síwè̠ke.",
             "imagen": "carne_asada3",
             "audio": "carne_asada3"
         },
         {
-            "nombre": "carneAsada4",
-            "texto": "Kí̠ka sík mè̠ka̠.",
+            "nombre": "Kí̠ka sík mè̠ka̠.",
             "imagen": "carne_asada4",
             "audio": "carneasada4"
         },
         {
-            "nombre": "carneAsada5",
-            "texto": "Dikì̠ a̠ bö́ ièke.",
+            "nombre": "Dikì̠ a̠ bö́ ièke.",
             "imagen": "carne_asada5",
             "audio": "carneasada5"
         },
         {
-            "nombre": "carneAsada6",
-            "texto": "I kö̀nè̠ke eriàrma̠ kë̀ i ñò̠rwa̠, chkè táne̠wa̠  má̠t e'ta̠ i síne̠.",
+            "nombre": "I kö̀nè̠ke eriàrma̠ kë̀ i ñò̠rwa̠, chkè táne̠wa̠  má̠t e'ta̠ i síne̠.",
             "imagen": "carne_asada6",
             "audio": "carneasada6"
         },
         {
-            "nombre": "carneAsada7",
-            "texto": "Kö́ ttö́ièkewa̠ sík wa e’ a̠ chkè e’ ièkèka̠.",
+            "nombre": "Kö́ ttö́ièkewa̠ sík wa e’ a̠ chkè e’ ièkèka̠.",
             "imagen": "carne_asada7",
             "audio": "carne_asada7"
         },
         {
-            "nombre": "carneAsada8",
-            "texto": "Ès i kichàiö̀ka bö́ tsá̠.",
+            "nombre": "Ès i kichàiö̀ka bö́ tsá̠.",
             "imagen": "canasta_carne",
             "audio": "canastacarne"
         },
         {
-            "nombre": "chanchopasos1",
-            "texto": "Kö̀chi wö́kir páiklèe bua’ë, tchée shu̠shò̠ ̀",
+            "nombre": "Kö̀chi wö́kir páiklèe bua’ë, tchée shu̠shò̠ ̀",
             "imagen": "chanchopasos1",
             "audio": "chanchopasos1"
         },
         {
-            "nombre": "chanchopasos2",
-            "texto": "I yík shò̠o̠ i bikèke pápaka̠ tabè wa.",
+            "nombre": "I yík shò̠o̠ i bikèke pápaka̠ tabè wa.",
             "imagen": "chanchopasos2",
             "audio": "chanchopasos2"
         },
         {
-            "nombre": "chanchopasos3",
-            "texto": "Ièkeka̠ u̠ ̀ bë́rie ése a̠ .",
+            "nombre": "Ièkeka̠ u̠ ̀ bë́rie ése a̠ .",
             "imagen": "chanchopasos3",
             "audio": "chanchopasos3"
         },
         {
-            "nombre": "chanchopasos4",
-            "texto": "A̠ kalö́m jkuö̀ tchèkelor ákie e’ ièkeka̠ .",
+            "nombre": "A̠ kalö́m jkuö̀ tchèkelor ákie e’ ièkeka̠ .",
             "imagen": "chanchopasos4",
             "audio": "chanchopasos4"
         },
         {
-            "nombre": "chanchopasos5",
-            "texto": "Ès i méka̠ bö́ ki̠ nañée̠ ; a̠ bö́ièke ena di’ tèke.",
+            "nombre": "Ès i méka̠ bö́ ki̠ nañée̠ ; a̠ bö́ièke ena di’ tèke.",
             "imagen": "chanchopasos5",
             "audio": "chanchopasos5"
         },
         {
-            "nombre": "chanchopasos6",
-            "texto": "Dö mìka̠ ka̠ ́ ñìne̠bitu̠tche e’ta̠ bö́ yèe i diki̠ ̀ a̠, ès i me̠a̠t dö bulàmi̠.",
+            "nombre": "Dö mìka̠ ka̠ ́ ñìne̠bitu̠tche e’ta̠ bö́ yèe i diki̠ ̀ a̠, ès i me̠a̠t dö bulàmi̠.",
             "imagen": "chanchopasos6",
             "audio": "chanchopasos6"
         },
         {
-            "nombre": "chanchopasos7",
-            "texto": "Bulàmi̠ ù̠ éwa bö tchése̠ í̠s ki̠.",
+            "nombre": "Bulàmi̠ ù̠ éwa bö tchése̠ í̠s ki̠.",
             "imagen": "chanchopasos7",
             "audio": "chanchopasos7"
         },
         {
-            "nombre": "chanchopasos8",
-            "texto": "Se’ wák i kèkeka̠ , e'ta̠ chkè albáne̠tsa̠ e̠na̠ klö́m mi̠a ma̠t, ès ta̠ bua’ i alìne̠ ",
+            "nombre": "Se’ wák i kèkeka̠ , e'ta̠ chkè albáne̠tsa̠ e̠na̠ klö́m mi̠a ma̠t, ès ta̠ bua’ i alìne̠ ",
             "imagen": "chanchopasos8",
             "audio": "chanchopasos8"
         },
         {
-            "nombre": "pescadopasos1",
-            "texto": "Be’ na̠mà̠ klö̀we̠wa̠ i ñá̠bita ké̠r, ulà ë̀t wa i so’kuö̀ klèke i wö́kir ké̠r tabèla wa, \nkë̀ i pík tèku̠lor.",
+            "nombre": "Be’ na̠mà̠ klö̀we̠wa̠ i ñá̠bita ké̠r, ulà ë̀t wa i so’kuö̀ klèke i wö́kir ké̠r tabèla wa, \nkë̀ i pík tèku̠lor.",
             "imagen": "pescadopasos1",
             "audio": "pescadopasos1"
         },
         {
-            "nombre": "pescadopasos2",
-            "texto": "Be’ i ñá̠ biétsa̠ , ñá̠ yétsa̠ .",
+            "nombre": "Be’ i ñá̠ biétsa̠ , ñá̠ yétsa̠ .",
             "imagen": "pescadopasos2",
             "audio": "pescadopasos2"
         },
         {
-            "nombre": "pescadopasos3",
-            "texto": "Be’ i alèkeka̠ diö̀ ie, e’ wö̀tèkelor; síwe̠ e’ me̠keka̠ , wáñe̠ , e̠na̠ i kuèke \nsík a̠ bö́ a̠ e’ bikèkewa̠ wáñe̠ añìes.",
+            "nombre": "Be’ i alèkeka̠ diö̀ ie, e’ wö̀tèkelor; síwe̠ e’ me̠keka̠ , wáñe̠ , e̠na̠ i kuèke \nsík a̠ bö́ a̠ e’ bikèkewa̠ wáñe̠ añìes.",
             "imagen": "pescadopasos3",
             "audio": "pescadopasos3"
         },
         {
-            "nombre": "avespasos1",
-            "texto": "Pík e̠na̠ ña̠bita yèkelor e̠rpa i duwó e’ta̠ .",
+            "nombre": "Pík e̠na̠ ña̠bita yèkelor e̠rpa i duwó e’ta̠ .",
             "imagen": "avespasos1",
             "audio": "avespasos1"
         },
         {
-            "nombre": "avespasos2",
-            "texto": "Kuö́ki̠ be’ i ni̠è̠wa di’ba a̠ .",
+            "nombre": "Kuö́ki̠ be’ i ni̠è̠wa di’ba a̠ .",
             "imagen": "avespasos2",
             "audio": "avespasos2"
         },
         {
-            "nombre": "avespasos3",
-            "texto": "Ulà wa be’ i kö̀ yèe.",
+            "nombre": "Ulà wa be’ i kö̀ yèe.",
             "imagen": "avespasos3",
             "audio": "avespasos3"
         },
         {
-            "nombre": "avespasos4",
-            "texto": "I kö̀yökla tsídalala e’ ñá̠wè̠keka̠ bö́ ki̠",
+            "nombre": "I kö̀yökla tsídalala e’ ñá̠wè̠keka̠ bö́ ki̠",
             "imagen": "avespasos4",
             "audio": "avespasos4"
         },
         {
-            "nombre": "avespasos5",
-            "texto": "I klátskuö tèlor bua’.",
+            "nombre": "I klátskuö tèlor bua’.",
             "imagen": "avespasos5",
             "audio": "avespasos5"
         },
         {
-            "nombre": "avespasos6",
-            "texto": "I kàbita e̠ na̠ i drìi tèlor.",
+            "nombre": "I kàbita e̠ na̠ i drìi tèlor.",
             "imagen": "avespasos6",
             "audio": "avespasos6"
         },
         {
-            "nombre": "avespasos7",
-            "texto": "Be’ i ña̠ ́ biétsa̠ , e’ mu̠le̠ ́ e’ kukèkeka̠ kiö̀ wa.",
+            "nombre": "Be’ i ña̠ ́ biétsa̠ , e’ mu̠le̠ ́ e’ kukèkeka̠ kiö̀ wa.",
             "imagen": "avespasos7",
             "audio": "avespasos7"
         },
         {
-            "nombre": "avespasos8",
-            "texto": "I ma̠lè wö̀tèkelor i dichéë.",
+            "nombre": "I ma̠lè wö̀tèkelor i dichéë.",
             "imagen": "avespasos8",
             "audio": "avespasos8"
         },
         {
-            "nombre": "avespasos9",
-            "texto": "E’ alekèka̠ chu̠mu̠ ̀ a̠ o dikó rpö̀ a̠ .",
+            "nombre": "E’ alekèka̠ chu̠mu̠ ̀ a̠ o dikó rpö̀ a̠ .",
             "imagen": "avespasos9",
             "audio": "avespasos9"
         },
         {
-            "nombre": "tortugapasos1",
-            "texto": "Be’ i yuwa’ tchèlor, i wö́kir e̠na̠ i krë̀ kë̀ katàno̠k",
+            "nombre": "Be’ i yuwa’ tchèlor, i wö́kir e̠na̠ i krë̀ kë̀ katàno̠k",
             "imagen": "tortugapasos1",
             "audio": "tortugapasos1"
         },
         {
-            "nombre": "tortugapasos2",
-            "texto": "Apà ñówè̠ka̠",
+            "nombre": "Apà ñówè̠ka̠",
             "imagen": "tortugapasos2",
             "audio": "tortugapasos2"
         },
         {
-            "nombre": "tortugapasos3",
-            "texto": "Apà iklèene̠ ma̠nè̠nè̠.",
+            "nombre": "Apà iklèene̠ ma̠nè̠nè̠.",
             "imagen": "tortugapasos3",
             "audio": "tortugapasos3"
         },
         {
-            "nombre": "tortugapasos4",
-            "texto": "I chkà wö̀tèlor.",
+            "nombre": "I chkà wö̀tèlor.",
             "imagen": "tortugapasos4",
             "audio": "tortugapasos4"
         },
         {
-            "nombre": "tortugapasos5",
-            "texto": "Mèka̠ di’ ta̠ ; a̠ má̠na̠wö ièka̠ ; ès i alèke.",
+            "nombre": "Mèka̠ di’ ta̠ ; a̠ má̠na̠wö ièka̠ ; ès i alèke.",
             "imagen": "tortugapasos5",
             "audio": "tortugapasos5"
         },
         {
-            "nombre": "udio1",
-            "texto": "Ù̠ a̠ di’ tèkeka̠ tá̠i̠",
+            "nombre": "Ù̠ a̠ di’ tèkeka̠ tá̠i̠",
             "imagen": "udio1",
             "audio": "avespasos1"
         },
         {
-            "nombre": "udio2",
-            "texto": "Mè̠ka̠ bö́ ki̠",
+            "nombre": "Mè̠ka̠ bö́ ki̠",
             "imagen": "udio2",
             "audio": "avespasos1"
         },
         {
-            "nombre": "udio3",
-            "texto": "Chkè wö̀tèlor mo̠lò̠lò̠ ",
+            "nombre": "Chkè wö̀tèlor mo̠lò̠lò̠ ",
             "imagen": "udio3",
             "audio": "avespasos1"
         },
         {
-            "nombre": "udio4",
-            "texto": "Tchée be’ u̠ ̀ ñe̠ ’ a̠ ",
+            "nombre": "Tchée be’ u̠ ̀ ñe̠ ’ a̠ ",
             "imagen": "udio4",
             "audio": "avespasos1"
         },
         {
-            "nombre": "udio5",
-            "texto": "A̠ dayë̀ tchée.",
+            "nombre": "A̠ dayë̀ tchée.",
             "imagen": "udio5",
             "audio": "avespasos1"
         },
         {
-            "nombre": "udio6",
-            "texto": "E’ a̠ tu’ jkuö̀ tchée e’ ièka̠ o cha̠mù̠ jkuö̀ tchée e’ iéka̠.",
+            "nombre": "E’ a̠ tu’ jkuö̀ tchée e’ ièka̠ o cha̠mù̠ jkuö̀ tchée e’ iéka̠.",
             "imagen": "udio6",
             "audio": "avespasos1"
         },
         {
-            "nombre": "udio7",
-            "texto": "Na̠mà̠ i di ema̠ e’ alèke i wák ë̀.",
+            "nombre": "Na̠mà̠ i di ema̠ e’ alèke i wák ë̀.",
             "imagen": "udio7",
             "audio": "avespasos1"
         },
         {
-            "nombre": "udio8",
-            "texto": "Kàsir e̠na̠ tsawì e’ alèke má̠na̠wö a̠.",
+            "nombre": "Kàsir e̠na̠ tsawì e’ alèke má̠na̠wö a̠.",
             "imagen": "udio8",
             "audio": "avespasos1"
         },
         {
-            "nombre": "pacaya_paso1",
-            "texto": "E’ yulèke kañìk a̠ e’e̠ se’ i alák tchéeke.",
+            "nombre": "E’ yulèke kañìk a̠ e’e̠ se’ i alák tchéeke.",
             "imagen": "pacaya_paso1",
             "audio": "avespasos1"
         },
         {
-            "nombre": "pacaya_paso2",
-            "texto": "E’ tchèkewa̠ bö́ a̠ .",
+            "nombre": "E’ tchèkewa̠ bö́ a̠ .",
             "imagen": "pacaya_paso2",
             "audio": "avespasos1"
         },
         {
-            "nombre": "pacaya_paso3",
-            "texto": "E’ trèke.",
+            "nombre": "E’ trèke.",
             "imagen": "pacaya_paso3",
             "audio": "avespasos1"
         },
         {
-            "nombre": "pacaya_paso4",
-            "texto": "Mìka̠ i katùne̠ e’ta̠ i jkuö̀lit yétsa̠ .",
+            "nombre": "Mìka̠ i katùne̠ e’ta̠ i jkuö̀lit yétsa̠ .",
             "imagen": "pacaya_paso4",
             "audio": "avespasos1"
         },
         {
-            "nombre": "pacaya_paso5",
-            "texto": "E’ta̠ irpö́la katùne̠ e’ katèke.",
+            "nombre": "E’ta̠ irpö́la katùne̠ e’ katèke.",
             "imagen": "pacaya_paso5",
             "audio": "avespasos1"
         },
         {
-            "nombre": "calulu_paso1",
-            "texto": "E’ kö̀ alö́lö shtèke.",
+            "nombre": "E’ kö̀ alö́lö shtèke.",
             "imagen": "calulu_paso1",
             "audio": "avespasos1"
         },
         {
-            "nombre": "calulu_paso2",
-            "texto": "E’ pàléeke ké̠wek.",
+            "nombre": "E’ pàléeke ké̠wek.",
             "imagen": "calulu_paso2",
             "audio": "avespasos1"
         },
         {
-            "nombre": "calulu_paso3",
-            "texto": "Kuö̀ki̠ ta̠ e’ kö̀ pàiklèke i kicha yóktsa̠ .",
+            "nombre": "Kuö̀ki̠ ta̠ e’ kö̀ pàiklèke i kicha yóktsa̠ .",
             "imagen": "calulu_paso3",
             "audio": "avespasos1"
         },
         {
-            "nombre": "calulu_paso4",
-            "texto": "Kuö̀ki̠ ta̠ i wö̀tèkelor mo̠lò̠lò̠ .",
+            "nombre": "Kuö̀ki̠ ta̠ i wö̀tèkelor mo̠lò̠lò̠ .",
             "imagen": "calulu_paso4",
             "audio": "avespasos1"
         },
         {
-            "nombre": "calulu_paso5",
-            "texto": "Mé̠ka̠ne ù̠ ki̠.",
+            "nombre": "Mé̠ka̠ne ù̠ ki̠.",
             "imagen": "calulu_paso5",
             "audio": "avespasos1"
         },
         {
-            "nombre": "calulu_paso6",
-            "texto": "A̠ di’ téka̠ e̠na̠ diyë̀ tchéka̠ .",
+            "nombre": "A̠ di’ téka̠ e̠na̠ diyë̀ tchéka̠ .",
             "imagen": "calulu_paso6",
             "audio": "avespasos1"
         },
         {
-            "nombre": "calulu_paso7",
-            "texto": "I katàrmi e’s ë̀ e̠na̠ i wö̀tè̠rmi̠ka̠ krò si̠o̠ ’ ta̠ .",
+            "nombre": "I katàrmi e’s ë̀ e̠na̠ i wö̀tè̠rmi̠ka̠ krò si̠o̠ ’ ta̠ .",
             "imagen": "calulu_paso7",
             "audio": "avespasos1"
         },
         {
-            "nombre": "quelite_paso1",
-            "texto": "Bitrèkewa̠ sík wa.",
+            "nombre": "Bitrèkewa̠ sík wa.",
             "imagen": "quelite_paso1",
             "audio": "avespasos1"
         },
         {
-            "nombre": "quelite_paso2",
-            "texto": "A̠ diyë̀ tchéka̠.",
+            "nombre": "A̠ diyë̀ tchéka̠.",
             "imagen": "quelite_paso2",
             "audio": "avespasos1"
         },
         {
-            "nombre": "quelite_paso3",
-            "texto": "Terréwa̠ bua’ë albó.",
+            "nombre": "Terréwa̠ bua’ë albó.",
             "imagen": "quelite_paso3",
             "audio": "avespasos1"
         },
         {
-            "nombre": "quelite_paso4",
-            "texto": "Tchéwa̠ bö́ a̠ .",
+            "nombre": "Tchéwa̠ bö́ a̠ .",
             "imagen": "quelite_paso4",
             "audio": "avespasos1"
         },
         {
-            "nombre": "quelite_paso5",
-            "texto": "E’ trèke eriàrma̠ kë̀ i ñò̠rwa̠ .",
+            "nombre": "E’ trèke eriàrma̠ kë̀ i ñò̠rwa̠ .",
             "imagen": "quelite_paso5",
             "audio": "avespasos1"
         },
         {
-            "nombre": "quelite_paso6",
-            "texto": "Sík kutùne̠wa̠ e’ta̠ i kutùne̠ , e’s i yèketsa̠ .",
+            "nombre": "Sík kutùne̠wa̠ e’ta̠ i kutùne̠ , e’s i yèketsa̠ .",
             "imagen": "quelite_paso6",
             "audio": "avespasos1"
         },
         {
-            "nombre": "quelite_paso7",
-            "texto": "E’ta̠ i kö̀ppéeke.",
+            "nombre": "E’ta̠ i kö̀ppéeke.",
             "imagen": "quelite_paso7",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_pejibaye1",
-            "texto": "Be’ ö̀kö niè̠wa íñe̠.",
+            "nombre": "Be’ ö̀kö niè̠wa íñe̠.",
             "imagen": "chicha_pejibaye1",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_pejibaye2",
-            "texto": "Bulé be’ dikó alé wö̀tskélor",
+            "nombre": "Bulé be’ dikó alé wö̀tskélor",
             "imagen": "chicha_pejibaye2",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_pejibaye3",
-            "texto": "Ièka̠ be’ kö́ ttö̀ië́ule sík wa e’ a̠.",
+            "nombre": "Ièka̠ be’ kö́ ttö̀ië́ule sík wa e’ a̠.",
             "imagen": "chicha_pejibaye3",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_pejibaye4",
-            "texto": "Tsé̠mi be’ ák kì̠. Wèe.",
+            "nombre": "Tsé̠mi be’ ák kì̠. Wèe.",
             "imagen": "chicha_pejibaye4",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_pejibaye5",
-            "texto": "Dikó chka ièka̠ne̠ be’ kö́ ttö́iulewa̠ sík wa e’ a̠",
+            "nombre": "Dikó chka ièka̠ne̠ be’ kö́ ttö́iulewa̠ sík wa e’ a̠",
             "imagen": "chicha_pejibaye5",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_pejibaye6",
-            "texto": "Tchéka̠ be’ ù̠ a̠, tö̀ki̠ be’ i a̠ ö̀kö tchéka̠ wö̀ti̠è̠ka̠",
+            "nombre": "Tchéka̠ be’ ù̠ a̠, tö̀ki̠ be’ i a̠ ö̀kö tchéka̠ wö̀ti̠è̠ka̠",
             "imagen": "chicha_pejibaye6",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_pejibaye7",
-            "texto": "I wö̀ti̠è̠ke ulà wa.̠",
+            "nombre": "I wö̀ti̠è̠ke ulà wa.̠",
             "imagen": "chicha_pejibaye7",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_pejibaye8",
-            "texto": "Mé̠a̠t e’s kö́ bikèwa̠ sík wa.",
+            "nombre": "Mé̠a̠t e’s kö́ bikèwa̠ sík wa.",
             "imagen": "chicha_pejibaye8",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas1",
-            "texto": "Ikuwö̀ sí shtèke.",
+            "nombre": "Ikuwö̀ sí shtèke.",
             "imagen": "chichas1",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas2",
-            "texto": "Ijkuö̀ tchée.",
+            "nombre": "Ijkuö̀ tchée.",
             "imagen": "chichas2",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas3",
-            "texto": "Ikuwö̀ ë̀ yétsa̠ .",
+            "nombre": "Ikuwö̀ ë̀ yétsa̠ .",
             "imagen": "chichas3",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas4",
-            "texto": "Wö̀tsée be’ ù̠ a̠.",
+            "nombre": "Wö̀tsée be’ ù̠ a̠.",
             "imagen": "chichas4",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas5",
-            "texto": "A̠ di’ téka̠ mè̠a̠t e’s.",
+            "nombre": "A̠ di’ téka̠ mè̠a̠t e’s.",
             "imagen": "chichas5",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas6",
-            "texto": "Buléña̠jkë ta̠ be’ i dí tétsa̠ .",
+            "nombre": "Buléña̠jkë ta̠ be’ i dí tétsa̠ .",
             "imagen": "chichas6",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas7",
-            "texto": "Tchéka̠ne̠ kö́ ttö̀ië́ulewa̠ sík wa e’ a̠ .",
+            "nombre": "Tchéka̠ne̠ kö́ ttö̀ië́ulewa̠ sík wa e’ a̠ .",
             "imagen": "chichas7",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas8",
-            "texto": "Kö̀bikéwa̠ sík wa mè̠a̠t e’s.",
+            "nombre": "Kö̀bikéwa̠ sík wa mè̠a̠t e’s.",
             "imagen": "chichas8",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas9",
-            "texto": "Dö̀ páiki ta̠ ikuwö̀ shölö̀ne.",
+            "nombre": "Dö̀ páiki ta̠ ikuwö̀ shölö̀ne.",
             "imagen": "chichas9",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas10",
-            "texto": "E’ta̠ be’ i wée.",
+            "nombre": "E’ta̠ be’ i wée.",
             "imagen": "chichas10",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas11",
-            "texto": "E’ chkà bikéwa̠ be’ kál sík wa, e’s i aléka̠ .",
+            "nombre": "E’ chkà bikéwa̠ be’ kál sík wa, e’s i aléka̠ .",
             "imagen": "chichas11",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas12",
-            "texto": "I alìne̠ ta̠ be’ i tchéka̠ ù̠ a̠ .",
+            "nombre": "I alìne̠ ta̠ be’ i tchéka̠ ù̠ a̠ .",
             "imagen": "chichas12",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas13",
-            "texto": "I pà sé̠ne̠ ta̠ be’ i yèlor ù̠ a̠ .",
+            "nombre": "I pà sé̠ne̠ ta̠ be’ i yèlor ù̠ a̠ .",
             "imagen": "chichas13",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas14",
-            "texto": "Tulése̠ e’s.",
+            "nombre": "Tulése̠ e’s.",
             "imagen": "chichas14",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas15",
-            "texto": "Páiki be’ sík yétsa̠ i trée.",
+            "nombre": "Páiki be’ sík yétsa̠ i trée.",
             "imagen": "chichas15",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas16",
-            "texto": "I bikèkewa̠ i sík e’ ë̀ wa erë sík tsi̠wa.",
+            "nombre": "I bikèkewa̠ i sík e’ ë̀ wa erë sík tsi̠wa.",
             "imagen": "chichas16",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas17",
-            "texto": "Dö̀ka̠ tché̠k ta̠ be’ i sík yélor.",
+            "nombre": "Dö̀ka̠ tché̠k ta̠ be’ i sík yélor.",
             "imagen": "chichas17",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chichas18",
-            "texto": "Idapàwe̠ka̠ wö̀chka si’ èt. E’ta̠ i síne.",
+            "nombre": "Idapàwe̠ka̠ wö̀chka si’ èt. E’ta̠ i síne.",
             "imagen": "chichas18",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_maiz1",
-            "texto": "Be’ ö̀ kö nie̠wa íñe̠ .",
+            "nombre": "Be’ ö̀ kö nie̠wa íñe̠ .",
             "imagen": "chicha_maiz1",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_maiz2",
-            "texto": "Ikuwö̀ sí wö̀tsée be’.",
+            "nombre": "Ikuwö̀ sí wö̀tsée be’.",
             "imagen": "chicha_maiz2",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_maiz3",
-            "texto": "Ni̠è̠wa̠ di’ a̠ íñe.",
+            "nombre": "Ni̠è̠wa̠ di’ a̠ íñe.",
             "imagen": "chicha_maiz3",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_maiz4",
-            "texto": "Bulé be’ i tsé̠mi̠ ák ki̠, wée.",
+            "nombre": "Bulé be’ i tsé̠mi̠ ák ki̠, wée.",
             "imagen": "chicha_maiz4",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_maiz5",
-            "texto": "E’ chkà bikèwa̠ sík wa ña̠ ’ ie.",
+            "nombre": "E’ chkà bikèwa̠ sík wa ña̠ ’ ie.",
             "imagen": "chicha_maiz5",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_maiz6",
-            "texto": "E’ aléka̠ be’ u̠ ̀ ki̠ .",
+            "nombre": "E’ aléka̠ be’ u̠ ̀ ki̠ .",
             "imagen": "chicha_maiz6",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_maiz7",
-            "texto": "I alìne̠ ta̠ be’ iéwa.",
+            "nombre": "I alìne̠ ta̠ be’ iéwa.",
             "imagen": "chicha_maiz7",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_maiz8",
-            "texto": "Sík yélor.",
+            "nombre": "Sík yélor.",
             "imagen": "chicha_maiz8",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_maiz9",
-            "texto": "Wö̀tié̠e̠ be’ rö kúshki wa.",
+            "nombre": "Wö̀tié̠e̠ be’ rö kúshki wa.",
             "imagen": "chicha_maiz9",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_maiz10",
-            "texto": "Tchékane̠ be’ rö u̠ ̀ a̠ ö̀kö ta̠ , shu̠ ̀ tie̠ ̀ka̠ .",
+            "nombre": "Tchékane̠ be’ rö u̠ ̀ a̠ ö̀kö ta̠ , shu̠ ̀ tie̠ ̀ka̠ .",
             "imagen": "chicha_maiz10",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chicha_maiz11",
-            "texto": "Kö̀bikéwa̠ sík wa.",
+            "nombre": "Kö̀bikéwa̠ sík wa.",
             "imagen": "chicha_maiz11",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chocolate1",
-            "texto": "I wö̀ katúule ajkuö̀ klétsa̠ wée.",
+            "nombre": "I wö̀ katúule ajkuö̀ klétsa̠ wée.",
             "imagen": "chocolate1",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chocolate2",
-            "texto": "Di’ ba mé̠ka̠ wö̀bichö̀we̠e̠.",
+            "nombre": "Di’ ba mé̠ka̠ wö̀bichö̀we̠e̠.",
             "imagen": "chocolate2",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chocolate3",
-            "texto": "E’ a̠ be’ tsuru’ chka iéka̠ .",
+            "nombre": "E’ a̠ be’ tsuru’ chka iéka̠ .",
             "imagen": "chocolate3",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chocolate4",
-            "texto": "Shu̠ ̀ tuèke kúshki wa.",
+            "nombre": "Shu̠ ̀ tuèke kúshki wa.",
             "imagen": "chocolate4",
             "audio": "avespasos1"
         },
         {
-            "nombre": "chocolate5",
-            "texto": "E’ yèke cha̠mu̠ ̀ katú ruwà ie.",
+            "nombre": "E’ yèke cha̠mu̠ ̀ katú ruwà ie.",
             "imagen": "chocolate5",
             "audio": "avespasos1"
         },
         {
-            "nombre": "pejibaye1",
-            "texto": "Dikó alíule ièkeka̠ kö́ a̠ .",
+            "nombre": "Dikó alíule ièkeka̠ kö́ a̠ .",
             "imagen": "pejibaye1",
             "audio": "avespasos1"
         },
         {
-            "nombre": "pejibaye2",
-            "texto": "E’s i kichà ièkeka̠ bö́ tsa̠ díwö èt.",
+            "nombre": "E’s i kichà ièkeka̠ bö́ tsa̠ díwö èt.",
             "imagen": "pejibaye2",
             "audio": "avespasos1"
         },
         {
-            "nombre": "pejibaye3",
-            "texto": "Mìka̠ sö i ñèketche, e’ta̠ i jkuö̀ tchéeke ë̀.",
+            "nombre": "Mìka̠ sö i ñèketche, e’ta̠ i jkuö̀ tchéeke ë̀.",
             "imagen": "pejibaye3",
             "audio": "avespasos1"
         }
     ],
-    "recetas" : [
+    "Recetas" : [
         {
             "nombre": "chke siuk", 
             "imagen": "carne_asada1",

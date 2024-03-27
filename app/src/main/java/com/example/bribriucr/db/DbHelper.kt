@@ -45,7 +45,7 @@ class DbHelper(context: Context) :
                 "$ColumnaImagen TEXT NOT NULL, " +
                 "$ColumnaAudio TEXT NOT NULL, " +
                 "NombreCategoria TEXT, " +
-                "CONSTRAINT FKCATEGORIA FOREIGN KEY(NombreCategoria) REFERENCES $Tabla_Categoria(NombreCategoria));"
+                "CONSTRAINT FKCATEGORIA FOREIGN KEY(NombreCategoria) REFERENCES $Tabla_Categoria(IdCategoria));"
     val createTablaCategoriasReceta =
         "CREATE TABLE $Tabla_Categoria( IdCategoria INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "NombreCategoria TEXT NOT NULL, ImagenCategoria TEXT, PorcentajeCategoria INTEGER);"
@@ -58,62 +58,14 @@ class DbHelper(context: Context) :
      * @param rutaAudio The path to the audio resource for the food item.
      * @return True if the insertion was successful, false otherwise.
      */
-    private fun insertarAlimento(db: SQLiteDatabase, nombre: String, rutaImagen: String,
-                                 rutaAudio: String): Boolean {
+    private fun insertarPalabra(db: SQLiteDatabase, nombre: String, rutaImagen: String,
+                                rutaAudio: String, categoria: String): Boolean {
 
         val values = ContentValues().apply {
             put(ColumnaNombre, nombre)
             put(ColumnaImagen, rutaImagen)
             put(ColumnaAudio, rutaAudio)
-            put(ColumnaCategoria, R.string.alimento)
-        }
-        val inserted = db.insert(Tabla_Palabra, null, values)
-        // Return true if insertion succeeded (row ID greater than 0), false otherwise
-        return inserted != -1L
-    }
-    /**
-     * Inserts a new step into the database.
-     *
-     * @param db The writable database instance.
-     * @param nombre The name of the step.
-     * @param texto The description of the step.
-     * @param rutaImagen The path to the image resource for the step.
-     * @param rutaAudio The path to the audio resource for the step.
-     * @return True if the insertion was successful, false otherwise.
-     */
-    private fun insertarPaso(
-        db:SQLiteDatabase,
-        nombre: String,
-        texto: String,
-        rutaImagen: String,
-        rutaAudio: String
-    ): Boolean {
-        val values = ContentValues().apply {
-            put(ColumnaNombre, nombre)
-            put(ColumnaImagen, rutaImagen)
-            put(ColumnaAudio, rutaAudio)
-            put(ColumnaCategoria, R.string.paso)
-        }
-        val inserted = db.insert(Tabla_Palabra, null, values)
-        // Return true if insertion succeeded (row ID greater than 0), false otherwise
-        return inserted != -1L
-    }
-
-    /**
-     * Inserts a new utensil into the database.
-     *
-     * @param db The writable database instance.
-     * @param nombre The name of the utensil.
-     * @param rutaImagen The path to the image resource for the utensil.
-     * @param rutaAudio The path to the audio resource for the utensil.
-     * @return True if the insertion was successful, false otherwise.
-     */
-    fun insertarUtensilio(db: SQLiteDatabase, nombre: String, rutaImagen: String, rutaAudio: String): Boolean {
-        val values = ContentValues().apply {
-            put(ColumnaNombre, nombre)
-            put(ColumnaImagen, rutaImagen)
-            put(ColumnaAudio, rutaAudio)
-            put(ColumnaCategoria, R.string.utencilio)
+            put(ColumnaCategoria, categoria)
         }
         val inserted = db.insert(Tabla_Palabra, null, values)
         // Return true if insertion succeeded (row ID greater than 0), false otherwise
@@ -135,7 +87,7 @@ class DbHelper(context: Context) :
         try {
             val insertStatement = "INSERT INTO $Tabla_Categoria (NombreCategoria, ImagenCategoria) VALUES (?, ?)"
             val compiledStatement = sqLiteDatabase.compileStatement(insertStatement)
-            val categories = listOf("Animales", "Vegetales", "Utencilios", "Recetas")
+            val categories = listOf("Animales", "Vegetales", "Utensilios", "Recetas")
             // Images representing each category
             val images = listOf(ctx.resources.getIdentifier("carne_asada1", "drawable", ctx.packageName).toString(),
                 ctx.resources.getIdentifier("bananomaduro", "drawable", ctx.packageName).toString(),
@@ -199,7 +151,7 @@ class DbHelper(context: Context) :
     }
 
     private fun insertDataFromRecetario(db: SQLiteDatabase, recetario: JSONObject) {
-        val categories = listOf("alimentos", "utensilios", "pasos")
+        val categories = listOf("Animales", "Vegetales", "Utensilios", "Pasos")
         for (category in categories) {
             val list = recetario.getJSONArray(category)
             for (i in 0 until list.length()) {
@@ -207,13 +159,12 @@ class DbHelper(context: Context) :
                 val nombre = item.getString("nombre")
                 val imageName = item.getString("imagen")
                 val imageId = ctx.resources.getIdentifier(imageName, "drawable", ctx.packageName)
-                val rutaAudio = "android.resource://" + ctx.packageName + "/raw/" + item.getString("audio")
-
-                when (category) {
-                    "alimentos" -> insertarAlimento(db, nombre, imageId.toString(), rutaAudio)  // Insert food item
-                    "utensilios" -> insertarUtensilio(db, nombre, imageId.toString(), rutaAudio)  // Insert utensil
-                    "pasos" -> insertarPaso(db, nombre, item.getString("texto"), imageId.toString(), rutaAudio)  // Insert step
-                    else -> Log.e(TAG, "Unknown category: $category")
+                val rutaAudio = item.getString("audio")// "android.resource://" + ctx.packageName + "/raw/" + item.getString("audio")
+                val audioId = ctx.resources.getIdentifier(rutaAudio, "raw", ctx.packageName)
+                if (category in categories) {
+                    insertarPalabra(db, nombre, imageId.toString(), audioId.toString(), category)  // Insert item
+                } else {
+                    Log.e(TAG, "Unknown category: $category")
                 }
             }
         }
@@ -257,26 +208,64 @@ class DbHelper(context: Context) :
         val cursor: Cursor = sqLiteDatabase.rawQuery(query, null)
         val categorias = ArrayList<Categoria>()
         for (i in 0 until cursor.count) {
-            if (cursor != null) {
-                cursor.moveToPosition(i) // Move to the current position
-                val id = cursor.getInt(0) // Se obtienen los valores de las 4 columnas
-                val nombre = cursor.getString(1)
-                var imagen = ""
-                if (cursor.getString(2) != null) {
-                    imagen = cursor.getString(2)
-                }
-                val porcentaje = cursor.getInt(3)
-                categorias.add(
-                    Categoria(
-                        id,
-                        nombre,
-                        imagen,
-                        porcentaje
-                    )
-                ) // Se crea un objeto Categoria con los datos
+            cursor.moveToPosition(i) // Move to the current position
+            val id = cursor.getInt(0) // Se obtienen los valores de las 4 columnas
+            val nombre = cursor.getString(1)
+            var imagen = ""
+            if (cursor.getString(2) != null) {
+                imagen = cursor.getString(2)
             }
+            val porcentaje = cursor.getInt(3)
+            categorias.add(
+                Categoria(
+                    id,
+                    nombre,
+                    imagen,
+                    porcentaje
+                )
+            ) // Se crea un objeto Categoria con los datos
         }
         cursor.close()
         return categorias
+    }
+
+    fun getImagesForCategory(db: SQLiteDatabase, category: String): ArrayList<Palabra> {
+        val imagesList = ArrayList<Palabra>()
+        val query = "SELECT * FROM $Tabla_Palabra WHERE NombreCategoria = ?"
+        val cursor = db.rawQuery(query, arrayOf(category))
+
+        for (i in 0 until cursor.count) {
+            if (cursor.moveToPosition(i)) {
+                val id = cursor.getInt(0) // Assuming the first column is the ID
+                val nombre = cursor.getString(1)
+                val imagen = cursor.getString(2)
+                val audio = cursor.getString(3)
+
+                val palabra = Palabra(id, nombre, imagen, audio)
+                imagesList.add(palabra)
+            }
+        }
+
+        cursor.close()
+        return imagesList
+    }
+
+    fun getAllImages(db: SQLiteDatabase): ArrayList<Palabra> {
+        val imagesList = ArrayList<Palabra>()
+        val query = "SELECT * FROM $Tabla_Palabra"
+        val cursor = db.rawQuery(query, null)
+        for (i in 0 until cursor.count) {
+            if (cursor.moveToPosition(i)) {
+                val id = cursor.getInt(0) // Assuming the first column is the ID
+                val nombre = cursor.getString(1)
+                val imagen = cursor.getString(2)
+                val audio = cursor.getString(3)
+
+                val palabra = Palabra(id, nombre, imagen, audio)
+                imagesList.add(palabra)
+            }
+        }
+        cursor.close()
+        return imagesList
     }
 }

@@ -12,7 +12,7 @@
     <string name="bebidas">Bebidas</string>
     <string name="alimento">Alimento</string>
     <string name="paso">Paso</string>
-    <string name="utencilio">Utencilio</string>
+    <string name="utensilio">Utensilio</string>
     <string name="aleatorio">Aleatorio</string>
     <string name="creditos">Créditos</string>
     <string name="imagen">Imagen</string>
@@ -22,4 +22,9 @@
     <string name="idioma">Idioma</string>
     <string name="ayuda">Ayuda</string>
     <string name="salir">Salir</string>
+    <string name="sonido">Sonido</string>
+    <string name="correct_answer">Respuesta correcta</string>
+    <string name="incorrect_answer">Respuesta incorrecta</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="respuesta">Respuesta</string>
 </resources>

@@ -1,6 +1,9 @@
 package com.example.bribriucr.ui
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -8,29 +11,45 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bribriucr.R
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.example.bribriucr.ImageMatch
 
-class TopicCardAdapter(val topicCard: List<TopicCard>, private val context: Context,):
+class TopicCardAdapter(private val topicCard: List<TopicCard>, private val context: Context,):
     RecyclerView.Adapter<TopicCardAdapter.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val vista = LayoutInflater.from(parent.context).inflate(R.layout.card_topic, parent, false)
-        return ItemViewHolder(vista)}
+        val context = parent.context
+            ?: // Handle null context
+            throw RuntimeException("Context is null in TopicCardAdapter")
+        val vista = LayoutInflater.from(context).inflate(R.layout.card_topic, parent, false)
+        return ItemViewHolder(vista)
+    }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.itemName.text = topicCard[position].name
-        //holder.itemPhoto.setImageResource(topicCard[position].image)
-        val imageIdString = topicCard[position].image  // Assuming image is a string
-        val imageId: Int? = imageIdString?.toIntOrNull()  // Handle potential conversion errors
-
+        val imageIdString = topicCard[position].image  // Image is a string with numbers
+        val imageId: Int? = imageIdString?.toIntOrNull()  // Convert string to int
         if (imageId != null) {
             val image = context.resources.getDrawable(imageId)
             holder.itemPhoto.setImageDrawable(image)
         } else {
             // Handle case where image ID conversion fails (optional: set default image)
         }
-
         holder.itemPercentage.text = topicCard[position].percentage
-        //holder.itemPhoto = (topicCard[position].image.)
+        holder.itemView.setOnClickListener {
+            val selectedTopic = topicCard[position]
+            navigateToTopicDetails(selectedTopic)
+        }
+    }
+
+    private fun navigateToTopicDetails(topic: TopicCard) {
+        val intent = Intent(context, ImageMatch::class.java)
+        intent.putExtra("topic", topic.name) // Pass the selected topic data
+        try {
+            context.startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            // Handle activity not found exception (e.g., log error, display message)
+            Log.e("TopicCardAdapter", "Activity not found for ImageMatch", e)
+        }
     }
 
     override fun getItemCount(): Int {
