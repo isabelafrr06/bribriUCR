@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_menu_book_24"
-        android:title="@string/aprende"
-        app:showAsAction="never"/>
+        android:icon="@drawable/ic_game"
+        android:title="@string/juega" />
 
     <item
         android:id="@+id/navigation_dashboard"
@@ -13,8 +12,8 @@
         android:title="@string/creditos" />
 
     <item
-        android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_person_24"
-        android:title="@string/perfil" />
+        android:id="@+id/navigation_learn"
+        android:icon="@drawable/ic_menu_book_24"
+        android:title="@string/aprende" />
 
 </menu>

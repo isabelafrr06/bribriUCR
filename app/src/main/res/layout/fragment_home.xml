@@ -5,12 +5,14 @@
     android:id="@+id/homeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/light_blue"
     tools:context=".ui.home.HomeFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:foreground="@drawable/card_border"
         app:cardBackgroundColor="#ffff"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
@@ -23,7 +25,7 @@
             android:id="@+id/constraintLayout2"
             android:layout_width="390dp"
             android:layout_height="90dp"
-            android:background="@color/green"
+            android:background="@color/white"
             android:orientation="horizontal"
             android:padding="10dp">
 
@@ -35,7 +37,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/ic_menu_help" />
+                app:srcCompat="@android:drawable/ic_menu_help"
+                app:tint="@color/light_blue" />
 
             <TextView
                 android:id="@+id/nameTxt"
@@ -43,10 +46,10 @@
                 android:layout_height="36dp"
                 android:lineSpacingExtra="5dp"
                 android:text="@string/aleatorio"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
+                android:textColor="@color/light_blue"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                android:typeface="serif"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/arrowImage"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -55,14 +58,16 @@
             <ImageView
                 android:id="@+id/arrowImage"
                 android:layout_width="50dp"
-                android:layout_height="51dp"
+                android:layout_height="50dp"
                 android:layout_alignParentStart="true"
+                android:background="@color/white"
                 android:contentDescription="@string/flecha_derecha"
-                android:foreground="@drawable/gmts_quantum_ic_chevron_right_white_24"
                 android:padding="1dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/gmts_quantum_ic_chevron_right_white_24"
+                app:tint="@color/light_blue" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

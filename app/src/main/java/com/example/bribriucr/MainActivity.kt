@@ -16,7 +16,7 @@ import com.example.bribriucr.db.DbHelper
 import com.example.bribriucr.ui.dashboard.DashboardFragment
 import com.example.bribriucr.ui.home.HomeFragment
 import com.example.bribriucr.ui.home.HomeModel
-import com.example.bribriucr.ui.profile.FragmentProfile
+import com.example.bribriucr.ui.profile.FragmentLearn
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.Locale
 /**
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             navView.setOnItemSelectedListener {
                 when (it.itemId) {
                     R.id.navigation_home -> replaceFragment(HomeFragment(homeModel, this))
-                    R.id.navigation_profile -> replaceFragment(FragmentProfile(dbHelper))
+                    R.id.navigation_learn -> replaceFragment(FragmentLearn(dbHelper))
                     R.id.navigation_dashboard -> replaceFragment(DashboardFragment(dbHelper))
                     else -> {
                         // Handle other navigation items
