@@ -44,6 +44,7 @@ class DbHelper(context: Context) :
                 "$ColumnaNombre TEXT NOT NULL, " +
                 "$ColumnaImagen TEXT NOT NULL, " +
                 "$ColumnaAudio TEXT NOT NULL, " +
+                "Aprendido BOOLEAN DEFAULT 0," +
                 "NombreCategoria TEXT, " +
                 "CONSTRAINT FKCATEGORIA FOREIGN KEY(NombreCategoria) REFERENCES $Tabla_Categoria(IdCategoria));"
     val createTablaCategoriasReceta =
@@ -89,8 +90,8 @@ class DbHelper(context: Context) :
             val compiledStatement = sqLiteDatabase.compileStatement(insertStatement)
             val categories = listOf("Animales", "Vegetales", "Utensilios", "Recetas")
             // Images representing each category
-            val images = listOf(ctx.resources.getIdentifier("carne_asada1", "drawable", ctx.packageName).toString(),
-                ctx.resources.getIdentifier("bananomaduro", "drawable", ctx.packageName).toString(),
+            val images = listOf(ctx.resources.getIdentifier("sawe", "drawable", ctx.packageName).toString(),
+                ctx.resources.getIdentifier("quelite", "drawable", ctx.packageName).toString(),
                 ctx.resources.getIdentifier("cuchillo", "drawable", ctx.packageName).toString(),
                 ctx.resources.getIdentifier("chichas4", "drawable", ctx.packageName).toString())
 

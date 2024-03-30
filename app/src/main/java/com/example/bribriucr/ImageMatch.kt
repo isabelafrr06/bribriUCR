@@ -3,6 +3,7 @@ package com.example.bribriucr
 import android.app.Activity
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
@@ -141,8 +142,11 @@ class ImageMatch : AppCompatActivity() {
     private fun playSound(audio: String?) {
         if (audio != null) {
             mediaPlayer = MediaPlayer.create(this, audio.toInt())
+            mediaPlayer?.start()
+        }else{
+            Log.w("ImageMatch", "Audio resource not available for this image")  // Log a warning message
+            // Optionally, display a visual notification to the user
         }
-        mediaPlayer?.start()
     }
 
     private fun disableImageClicks() {
