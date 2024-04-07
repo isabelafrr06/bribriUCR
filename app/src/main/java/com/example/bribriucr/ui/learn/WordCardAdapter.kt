@@ -1,4 +1,4 @@
-package com.example.bribriucr.ui.profile
+package com.example.bribriucr.ui.learn
 
 import android.view.LayoutInflater
 import android.view.View

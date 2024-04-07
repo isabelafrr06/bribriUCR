@@ -1,4 +1,4 @@
-package com.example.bribriucr.ui.profile
+package com.example.bribriucr.ui.learn
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -35,10 +35,10 @@ class FragmentLearn (dbHelper: DbHelper): Fragment() {
 
         // Prepare card data
         val cardData = listOf(
-            FragmentLearnModel("Item 1", "Description 1", R.drawable.agua, R.raw.agua, false),
-            FragmentLearnModel("Item 2", "Description 2", R.drawable.apa, R.raw.apa, true),
-            FragmentLearnModel("Item 3", "Description 3", R.drawable.agua, R.raw.agua, false),
-            FragmentLearnModel("Item 4", "Description 4", R.drawable.apa, R.raw.apa, true),
+            FragmentLearnModel("Item 1", "Description 1", R.drawable.agua, R.raw.di_agua, false),
+            FragmentLearnModel("Item 2", "Description 2", R.drawable.apa, R.raw.apa_lora, true),
+            FragmentLearnModel("Item 3", "Description 3", R.drawable.agua, R.raw.di_agua, false),
+            FragmentLearnModel("Item 4", "Description 4", R.drawable.apa, R.raw.apa_lora, true),
             //
             // Add more card data objects
         )

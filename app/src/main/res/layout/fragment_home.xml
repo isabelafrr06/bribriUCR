@@ -33,12 +33,12 @@
                 android:id="@+id/imageView"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:contentDescription="Q?"
+                android:contentDescription="@string/question"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@android:drawable/ic_menu_help"
-                app:tint="@color/light_blue" />
+                app:tint="?attr/colorSecondary" />
 
             <TextView
                 android:id="@+id/nameTxt"
@@ -46,7 +46,7 @@
                 android:layout_height="36dp"
                 android:lineSpacingExtra="5dp"
                 android:text="@string/aleatorio"
-                android:textColor="@color/light_blue"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
@@ -60,14 +60,14 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentStart="true"
-                android:background="@color/white"
+                android:background="?attr/colorOnPrimary"
                 android:contentDescription="@string/flecha_derecha"
                 android:padding="1dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/gmts_quantum_ic_chevron_right_white_24"
-                app:tint="@color/light_blue" />
+                app:tint="?attr/colorSecondary" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -76,7 +76,7 @@
         android:id="@+id/recyclerList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/white"
+        android:background="?attr/colorOnPrimary"
         android:gravity="top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -14,7 +14,6 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.IOException
-import java.io.InputStream
 import java.io.InputStreamReader
 /**
  * Helper class for managing the application's database interactions.
@@ -39,7 +38,7 @@ class DbHelper(context: Context) :
 
     private val ctx: Context = context
     // Table creation statements
-    val createTablapalabra =
+    private val createTablapalabra =
         "CREATE TABLE $Tabla_Palabra( IdPalabra INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "$ColumnaNombre TEXT NOT NULL, " +
                 "$ColumnaImagen TEXT NOT NULL, " +
@@ -47,7 +46,7 @@ class DbHelper(context: Context) :
                 "Aprendido BOOLEAN DEFAULT 0," +
                 "NombreCategoria TEXT, " +
                 "CONSTRAINT FKCATEGORIA FOREIGN KEY(NombreCategoria) REFERENCES $Tabla_Categoria(IdCategoria));"
-    val createTablaCategoriasReceta =
+    private val createTablaCategorias =
         "CREATE TABLE $Tabla_Categoria( IdCategoria INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "NombreCategoria TEXT NOT NULL, ImagenCategoria TEXT, PorcentajeCategoria INTEGER);"
     /**
@@ -82,7 +81,7 @@ class DbHelper(context: Context) :
      * @param sqLiteDatabase The database instance.
      */
     override fun onCreate(sqLiteDatabase: SQLiteDatabase) {
-        sqLiteDatabase.execSQL(createTablaCategoriasReceta)
+        sqLiteDatabase.execSQL(createTablaCategorias)
         sqLiteDatabase.execSQL(createTablapalabra)
         sqLiteDatabase.beginTransaction()  // Start a transaction for efficiency
         try {
@@ -90,10 +89,10 @@ class DbHelper(context: Context) :
             val compiledStatement = sqLiteDatabase.compileStatement(insertStatement)
             val categories = listOf("Animales", "Vegetales", "Utensilios", "Recetas")
             // Images representing each category
-            val images = listOf(ctx.resources.getIdentifier("sawe", "drawable", ctx.packageName).toString(),
-                ctx.resources.getIdentifier("quelite", "drawable", ctx.packageName).toString(),
-                ctx.resources.getIdentifier("cuchillo", "drawable", ctx.packageName).toString(),
-                ctx.resources.getIdentifier("chichas4", "drawable", ctx.packageName).toString())
+            val images = listOf(R.drawable.sawe.toString(),
+                R.drawable.quelite.toString(),
+                R.drawable.cuchillo.toString(),
+                R.drawable.chichas4.toString())
 
             for (i in categories.indices) {
                 compiledStatement.bindString(1, categories[i])
@@ -107,50 +106,43 @@ class DbHelper(context: Context) :
             sqLiteDatabase.endTransaction()  // End transaction regardless of success or failure
         }
 
-        var recetarioJson = ""
         try {
-            val input: InputStream = this.ctx.assets.open("recetario.json")
-            val bufferedReader = BufferedReader(InputStreamReader(input))
-            val stringBuilder = StringBuilder()
-            var line: String?
-            while (bufferedReader.readLine().also { line = it } != null) {
-                stringBuilder.append(line)
-            }
-            bufferedReader.close()
-            input.close()
-            recetarioJson = stringBuilder.toString()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        // Process data from recetario.json (with resource management)
-        try {
-            val input = ctx.assets.open("recetario.json")
-            val reader = BufferedReader(InputStreamReader(input))
-            val stringBuilder = StringBuilder()
-            var line: String?
-            while (reader.readLine().also { line = it } != null) {
-                stringBuilder.append(line)
-            }
-            reader.close()
-            input.close()
-            val recetarioJson = stringBuilder.toString()
+            // Open the "recetario.json" file from the assets folder (using "use")
+            this.ctx.assets.open("recetario.json").use { input ->
+                // Create a buffered reader to read the file (using "use")
+                BufferedReader(InputStreamReader(input)).use { reader ->
+                    val stringBuilder = StringBuilder()
+                    var line: String?
+                    while (reader.readLine().also { line = it } != null) {
+                        stringBuilder.append(line)
+                    }
+                    val recetarioJson = stringBuilder.toString()
 
-            val recetario = JSONObject(recetarioJson)
-            insertDataFromRecetario(sqLiteDatabase, recetario)
+                    // Parse the JSON string into a JSONObject
+                    val recetario = JSONObject(recetarioJson)
+                    // Insert data from the parsed JSON into database
+                    insertDataFromRecetario(sqLiteDatabase, recetario)
+                }
+            }
         } catch (e: IOException) {
+            // Log descriptive error message with tag "TAG" for IOException
             Log.e(TAG, "Error processing recetario.json", e)
         } catch (e: JSONException) {
+            // Log a descriptive error message for JSONException
             Log.e(TAG, "Error parsing JSON", e)
         }
-
-        fun eliminarPalabra(nombre: String) {
-            sqLiteDatabase.delete(
-                Tabla_Palabra,
-                "$ColumnaNombre = \'$nombre\'", null
-            )
-        }
     }
-
+    /**
+     * Inserts data from a recipe JSON object into a SQLite database.
+     *
+     * This function iterates through predefined categories ("Animales", "Vegetales", "Utensilios", "Pasos")
+     * within the provided `recetario` JSONObject. For each category, it extracts a JSONArray and loops
+     * through its items (JSONObject). Each item's attributes ("nombre", "imagen", "audio") are retrieved
+     * and used to potentially insert data into the database using the `insertarPalabra` function.
+     *
+     * @param db The SQLiteDatabase instance to insert data into.
+     * @param recetario The JSONObject containing recipe data.
+     */
     private fun insertDataFromRecetario(db: SQLiteDatabase, recetario: JSONObject) {
         val categories = listOf("Animales", "Vegetales", "Utensilios", "Pasos")
         for (category in categories) {
@@ -158,9 +150,11 @@ class DbHelper(context: Context) :
             for (i in 0 until list.length()) {
                 val item = list.getJSONObject(i)
                 val nombre = item.getString("nombre")
-                val imageName = item.getString("imagen")
+                var imageName = item.getString("imagen")
+                if (imageName == "") {imageName = "0"}  // Set to "0" if not found
                 val imageId = ctx.resources.getIdentifier(imageName, "drawable", ctx.packageName)
-                val rutaAudio = item.getString("audio")// "android.resource://" + ctx.packageName + "/raw/" + item.getString("audio")
+                var rutaAudio = item.getString("audio")// "android.resource://" + ctx.packageName + "/raw/" + item.getString("audio")
+                if (rutaAudio == "") {rutaAudio = "0"}  // Set to "0" if not found
                 val audioId = ctx.resources.getIdentifier(rutaAudio, "raw", ctx.packageName)
                 if (category in categories) {
                     insertarPalabra(db, nombre, imageId.toString(), audioId.toString(), category)  // Insert item
@@ -184,7 +178,7 @@ class DbHelper(context: Context) :
         onCreate(sqLiteDatabase)
     }
 
-    /* Inserts a new word (food item, utensil, step) into the database.
+    /** Inserts a new word (food item, utensil, step) into the database.
     *
     * @param palabra The word object containing information to insert.
     */
@@ -198,8 +192,7 @@ class DbHelper(context: Context) :
         db.insert(Tabla_Palabra, null, values)
         db.close()
     }
-    /**
-     * Retrieves all categories from the database.
+    /** Retrieves all categories from the database.
      *
      * @param sqLiteDatabase The database instance.
      * @return A list of `Categoria` objects representing all categories.
@@ -210,7 +203,7 @@ class DbHelper(context: Context) :
         val categorias = ArrayList<Categoria>()
         for (i in 0 until cursor.count) {
             cursor.moveToPosition(i) // Move to the current position
-            val id = cursor.getInt(0) // Se obtienen los valores de las 4 columnas
+            val id = cursor.getInt(0) // Obtain values from columns
             val nombre = cursor.getString(1)
             var imagen = ""
             if (cursor.getString(2) != null) {
@@ -224,49 +217,59 @@ class DbHelper(context: Context) :
                     imagen,
                     porcentaje
                 )
-            ) // Se crea un objeto Categoria con los datos
+            ) // Create a Category object
         }
         cursor.close()
         return categorias
     }
 
+    /** Retrieves images and associated data for a given category from the database.
+     * @param db The SQLiteDatabase instance to query.
+     * @param category The name of the category to retrieve images for.
+     * @return An ArrayList of Palabra objects representing the retrieved images and data,
+     *          or an empty list if no images are found for the category.
+     */
     fun getImagesForCategory(db: SQLiteDatabase, category: String): ArrayList<Palabra> {
         val imagesList = ArrayList<Palabra>()
-        val query = "SELECT * FROM $Tabla_Palabra WHERE NombreCategoria = ?"
-        val cursor = db.rawQuery(query, arrayOf(category))
-
+        val query: String
+        val cursor: Cursor
+        // Query to fetch words for a specific category
+        if(category != "") {
+            query = "SELECT * FROM $Tabla_Palabra WHERE NombreCategoria = ?"
+            // Execute the query with the provided category
+            cursor = db.rawQuery(query, arrayOf(category))
+        }else{ // For all words
+            query = "SELECT * FROM $Tabla_Palabra"
+            // Execute the query
+            cursor = db.rawQuery(query, null)
+        }
+        // Iterate through the results
         for (i in 0 until cursor.count) {
             if (cursor.moveToPosition(i)) {
-                val id = cursor.getInt(0) // Assuming the first column is the ID
+                // Extract data from the current row
+                val id = cursor.getInt(0)  // ID is the first column
                 val nombre = cursor.getString(1)
                 val imagen = cursor.getString(2)
                 val audio = cursor.getString(3)
-
+                // Create a new Palabra object with the extracted data
                 val palabra = Palabra(id, nombre, imagen, audio)
+                // Add the Palabra object to the list
                 imagesList.add(palabra)
             }
         }
-
+        // Ensure cursor is closed to release resources
         cursor.close()
+        // Return the list of retrieved Palabra objects
         return imagesList
     }
 
-    fun getAllImages(db: SQLiteDatabase): ArrayList<Palabra> {
-        val imagesList = ArrayList<Palabra>()
-        val query = "SELECT * FROM $Tabla_Palabra"
-        val cursor = db.rawQuery(query, null)
-        for (i in 0 until cursor.count) {
-            if (cursor.moveToPosition(i)) {
-                val id = cursor.getInt(0) // Assuming the first column is the ID
-                val nombre = cursor.getString(1)
-                val imagen = cursor.getString(2)
-                val audio = cursor.getString(3)
-
-                val palabra = Palabra(id, nombre, imagen, audio)
-                imagesList.add(palabra)
-            }
+    fun updateAprendido(db: SQLiteDatabase, itemName: String, aprendido: Boolean) {
+        val updateQuery = "UPDATE $Tabla_Palabra SET Aprendido = ? WHERE $ColumnaNombre = ?"
+        val contentValues = ContentValues().apply {
+            put("Aprendido", aprendido)
+            put("$ColumnaNombre", itemName)  // Assuming 'nombre' is the unique identifier for items
         }
-        cursor.close()
-        return imagesList
+        db.update("$Tabla_Palabra", contentValues, "$ColumnaNombre = ?", arrayOf(itemName))
     }
+
 }

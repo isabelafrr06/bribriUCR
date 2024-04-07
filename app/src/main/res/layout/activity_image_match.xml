@@ -6,18 +6,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:progress="0"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/text_to_guess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:padding="15dp"
-        android:text="Palabra"
+        android:text="@string/palabra"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/progress_bar" />
 
     <ImageButton
         android:id="@+id/sound_button"
@@ -25,11 +36,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
-        android:backgroundTint="@color/light_blue"
+        android:backgroundTint="?attr/colorPrimary"
         android:contentDescription="@string/sonido"
         android:padding="15dp"
         android:src="@drawable/ic_sound_24"
-        app:tint="@color/white"
+        app:tint="?attr/colorOnPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_to_guess"
         app:layout_constraintTop_toTopOf="parent" />
@@ -58,7 +69,8 @@
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/agua" />
+            app:srcCompat="@drawable/agua"
+            android:contentDescription="@string/imagen" />
 
         <ImageView
             android:id="@+id/image_option_2"
@@ -72,7 +84,8 @@
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/agua" />
+            tools:srcCompat="@drawable/agua"
+            android:contentDescription="@string/imagen" />
 
         <ImageView
             android:id="@+id/image_option_3"
@@ -87,7 +100,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_option_1"
-            app:srcCompat="@drawable/agua" />
+            app:srcCompat="@drawable/agua"
+            android:contentDescription="@string/imagen" />
 
         <ImageView
             android:id="@+id/image_option_4"
@@ -96,7 +110,7 @@
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:clickable="true"
-            android:contentDescription="image"
+            android:contentDescription="@string/imagen"
             android:focusable="true"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -125,7 +139,7 @@
         android:text="@string/siguiente"
         android:textSize="24sp"
         android:padding="10dp"
-        android:textColor="@color/white"
+        android:textColor="?attr/colorOnPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -135,7 +149,7 @@
         android:layout_width="409dp"
         android:layout_height="5dp"
         android:background="?android:attr/listDivider"
-        android:backgroundTint="#00BFF2"
+        android:backgroundTint="?attr/colorPrimary"
         android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_to_guess" />

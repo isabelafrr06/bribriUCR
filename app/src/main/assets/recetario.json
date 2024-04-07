@@ -3,7 +3,7 @@
         {
             "nombre": "apà / pà",
             "imagen": "apa",
-            "audio": "apa"
+            "audio": "apa_lora"
         },
         { 
             "nombre": "bàka",
@@ -13,126 +13,155 @@
         {
             "nombre": "dakòl/dakòr",
             "imagen": "pez1_sardina",
-            "audio": "pez1"
+            "audio": "pez_dakol_sardina"
         },
         {
             "nombre": "dakúr arrôs/dukúr rròs",
             "imagen": "pez2_guapote",
-            "audio": "pez2"
+            "audio": "pez_dakur_arros_guapote"
         },
         {
             "nombre": "di’",
             "imagen": "agua",
-            "audio": "agua"
+            "audio": "di_agua"
         },
         {
             "nombre": "ka̠lè̠m",
             "imagen": "pez4",
-            "audio": "pez4"
+            "audio": "pez_kalem_"
         },
         {
             "nombre": "kàsir",
             "imagen": "kasir",
-            "audio": "kasir"
+            "audio": "kasir_saino"
         },
         {
             "nombre": "kaë̀",
             "imagen": "kae",
-            "audio": "kae"
+            "audio": "kae_pava"
+        },
+        {
+            "nombre": "kàl su̠li̠",
+            "imagen": "kal_suli",
+            "audio": "kal_suli_venado"
         },
         {
             "nombre": "kö̀chi",
             "imagen": "kochi",
-            "audio": "chancho"
+            "audio": "kochi_chancho"
         },
         {
             "nombre": "ku̠ko̠’",
             "imagen": "guacamaya",
-            "audio": "guacamaya"
+            "audio": "kuko_guacamaya"
         },
         {
             "nombre": "mu̠lùkayö / ku̠ku̠ wö̀ tsurùrù / ku̠ku̠lé̠ wö̀ sarùrù",
             "imagen": "mulukayo",
-            "audio": "mulukayo"
+            "audio": "mulukayo_perico"
         },
         { 
             "nombre": "na̠i̠’",
             "imagen": "nai",
-            "audio": "nai"
+            "audio": "nai_danta"
         },
         {
             "nombre": "ni̠mà̠ ichö́k/na̠mà̠ ichö́k",
             "imagen": "pez3",
-            "audio": "pez3"
+            "audio": "pez_nimaichok_bobo"
         },
         { 
             "nombre": "suwë́",
             "imagen": "sawe",
-            "audio": "liebre"
+            "audio": "suwe_liebre"
         },
         {
             "nombre": "shawa’/shuwa",
             "imagen": "pez5_dormilon",
-            "audio": "pez5"
+            "audio": "pez_shawa_dormilon"
         },
         {
             "nombre": "sichìk /stchìk",
             "imagen": "pez6_roncador",
-            "audio": "pez6"
+            "audio": "pez_sichik_roncador"
         },
         {
             "nombre": "sini̠'",
             "imagen": "sini",
-            "audio": "sini"
+            "audio": "sini_chancho"
         },
         {
             "nombre": "të̀brush / yë̀böwö",
             "imagen": "pez7_sargento",
-            "audio": "pez7"
+            "audio": "pez_tebrush_sargento"
         },
         {
             "nombre": "te su̠lì̠ ",
             "imagen": "te_suli",
-            "audio": "venado"
+            "audio": "tesuli_venado"
         },
         {
             "nombre": "tsaí̠ ni̠me̠ / tsaí̠ na̠me̠ / sinì ni̠me̠ / sinì na̠me̠",
             "imagen": "pez8",
-            "audio": "pez8"
+            "audio": "pez_tsaname_robalo"
         },
         {
             "nombre": "tkù / tchù",
             "imagen": "tku_gallinamonte",
-            "audio": "tku"
+            "audio": "tku_gallinamonte"
         },
         {
             "nombre": "tsiö̀",
             "imagen": "tucan",
-            "audio": "tucan"
+            "audio": "tsio_tucan"
         },
         {
             "nombre": "tlók kuë̀",
             "imagen": "tortugalagarto",
-            "audio": "tortuga"
-        },
-        {
-            "nombre": "tsawì/tsuwì/tsuì",
-            "imagen": "tsawi_armadillo",
-            "audio": "tsawi"
+            "audio": "tlokkue_tortuga"
         },
         {
             "nombre": "tsanè",
             "imagen": "tsane_carpintero",
-            "audio": "tsane"
+            "audio": "tsane_carpintero"
+        },
+        {
+            "nombre": "tsawì/tsuwì/tsuì",
+            "imagen": "tsawi_armadillo",
+            "audio": "tsawi_armadillo"
         },
         {
             "nombre": "wàtak",
             "imagen": "pez9_machaca",
-            "audio": "pez9"
+            "audio": "pez_watak_machaca"
         }
     ],
     "Vegetales" : [
-
+        {
+            "nombre": "ali' / li'",
+            "imagen": "ali_yuca",
+            "audio": "ali_yuca"
+        },
+        {
+            "nombre": "apì / pì'",
+            "imagen": "api_ayote",
+            "audio": "api_ayote"
+        },
+        {
+            "nombre": "bla' / bala'",
+            "imagen": "bla_bala_granadilla",
+            "audio": "bla_granadilla"
+        },
+        {
+            "nombre": "bròkö",
+            "imagen": "broko_calalu",
+            "audio": "broko_calalu"
+        },
+        {
+            "nombre": "bùlali",
+            "imagen": "bulali_miel",
+            "audio": "bulali_miel"
+        },
         {
             "nombre": "chamù põlï / chamù ákie",
             "imagen": "bananoverde",
@@ -144,24 +173,24 @@
             "audio": "maduro_balo"
         },
         {
-            "nombre": "bròkö",
-            "imagen": "broko_calalu",
-            "audio": "calalu"
+            "nombre": "chi'",
+            "imagen": "chi_florortiga",
+            "audio": "chi_florortiga"
         },
         {
             "nombre": "dikó / dakó",
             "imagen": "diko_pejibaye",
-            "audio": "pejibaye"
+            "audio": "diko_pejibaye"
         },
         {
             "nombre": "diyë̀’",
             "imagen": "diye_sal",
-            "audio": "sal"
+            "audio": "diye_sal"
         },
         {
             "nombre": "iám / iá",
             "imagen": "pacaya",
-            "audio": "pacaya"
+            "audio": "iam_pacaya"
         },
         {
             "nombre": "ikuö̀ / kuö̀ ",
@@ -169,101 +198,166 @@
             "audio": "ikuo_maiz"
         },
         {
-            "nombre": "kàl su̠li̠",
-            "imagen": "kal_suli",
-            "audio": "kal_suli"
-        },
-        {
             "nombre": "kalö́m",
             "imagen": "kalom_platano",
-            "audio": "kalom"
+            "audio": "kalom_platano"
+        },
+        {
+            "nombre": "kichö’",
+            "imagen": "kicho_papaya",
+            "audio": "kicho_papaya"
         },
         {
             "nombre": "köpö̀wöshki",
             "imagen": "quelite",
-            "audio": "quelite"
+            "audio": "kopowoshki_quelite"
         },
         { 
             "nombre": "mánawö",
             "imagen": "manawo_bananomorado",
-            "audio": "bananomorado"
+            "audio": "manawo_bananomorado"
         },
         {
-            "nombre": "Ö̀ kö",
-            "imagen": "mohoso",
-            "audio": "tortuga"
+            "nombre": "màsawö",
+            "imagen": "masawo_bananopeq",
+            "audio": "masawo_bananopeq"
+        },
+        {
+            "nombre": "ö̀lmè̱me̱",
+            "imagen": "olmeme_granadilla",
+            "audio": "olmeme_granadilla"
+        },
+        {
+            "nombre": "páköl / pàsh",
+            "imagen": "pakol_pash_cana",
+            "audio": "pakol_pash_cana"
+        },
+        {
+            "nombre": "pó̱rpö",
+            "imagen": "porpo_platanillo",
+            "audio": "porpo_platanillo"
+        },
+        {
+            "nombre": "salo'",
+            "imagen": "salo_cacao",
+            "audio": "salo_cacao"
+        },
+        {
+            "nombre": "sawák",
+            "imagen": "sawak_chayote",
+            "audio": "sawak_chayote"
         },
         {
             "nombre": "si͂́ / dapö̀",
             "imagen": "si_palmito",
-            "audio": "palmito"
+            "audio": "si_palmito"
+        },
+        {
+            "nombre": "sí̱rpö",
+            "imagen": "sirpo_palmito",
+            "audio": "sirpo_palmito"
+        },
+        {
+            "nombre": "ski’kuö",
+            "imagen": "skikuo_hongo",
+            "audio": "skikuo_hongo"
+        },
+        {
+            "nombre": "to̱mò̱",
+            "imagen": "tomo_guaba",
+            "audio": "tomo_guaba"
+        },
+        {
+            "nombre": "tsâ̱wö / tsò̱wö",
+            "imagen": "tsawo_guanabana",
+            "audio": "tsawo_guanabana"
         },
         { 
             "nombre": "tsiru’ / tsuru’",
             "imagen": "cacao",
-            "audio": "cacao"
+            "audio": "tsiru_cacao"
         },
         {
             "nombre": "tu’ / salíröm / salírö",
             "imagen": "tu_name",
-            "audio": "name"
+            "audio": "tu_name"
+        },
+        {
+            "nombre": "wë̀röm",
+            "imagen": "werom_cacao",
+            "audio": "werom_cacao"
+        },
+        {
+            "nombre": "wë̀shwö",
+            "imagen": "weshwo_cacao",
+            "audio": "weshwo_cacao"
         }
     ],
     "Utensilios": [
         {
             "nombre": "ajkö́ /kö́",
             "imagen": "canasta",
-            "audio": "canasta"
+            "audio": "ajko_canasta"
         },
         {
             "nombre": "ako̠’/aka̠’/ko̠’",
             "imagen": "tapesco",
-            "audio": "asador"
+            "audio": "ako_asador"
         },
         {
             "nombre": "bö̂wöaka/bö́ka",
             "imagen": "tizon",
-            "audio": "tizon"
+            "audio": "bowoaka_tizon"
         },
         {
             "nombre": "bö́",
             "imagen": "bo_fogata",
-            "audio": "fogata"
+            "audio": "bo_fogata"
+        },
+        {
+            "nombre": "datsù",
+            "imagen": "datsu_huacal",
+            "audio": "datsu_huacal"
         },
         {
             "nombre": "dichàjkuö / kulë’",
             "imagen": "batea",
-            "audio": "batea"
+            "audio": "dichajkuo_batea"
         },
         {
             "nombre": "dùkö",
             "imagen": "atizador",
-            "audio": "plumas"
+            "audio": "duko_plumas"
         },
         {
-            "nombre": "ijkuö̀ k bö́ a̠ ",
+            "nombre": "ijkuö̀k bö́ a̠ ",
             "imagen": "sarten",
             "audio": "sarten"
         },
         {
             "nombre": "kàlsik",
             "imagen": "hojas",
-            "audio": "parhojas"
+            "audio": "kalsik_hojas"
+        },
+        {
+            "nombre": "síkkö",
+            "imagen": "sikko_recipientehoja",
+            "audio": "sikko_recipientehoja"
         },
         {
             "nombre": "tabè",
             "imagen": "cuchillo",
-            "audio": "cuchillo"
+            "audio": "tabe_cuchillo"
         },
         {
             "nombre": "tka̠’/tcho̠’",
             "imagen": "huacal",
-            "audio": "huacal"
+            "audio": "tka_tcho_huacal"
         },
         {
             "nombre": "ù̠",
             "imagen": "u_olla",
-            "audio": "vasija"
+            "audio": "u_olla"
         }
     ],
     "Pasos": [

@@ -5,8 +5,7 @@ import com.example.bribriucr.db.DbHelper
 import com.example.bribriucr.ui.TopicCard
 
 class HomeModel(private val dbHelper: DbHelper) {
-    /**
-     * Fetches topic cards from the database.
+    /** Fetches topic cards from the database.
      *
      * @return A list of TopicCard objects representing the retrieved data.
      */

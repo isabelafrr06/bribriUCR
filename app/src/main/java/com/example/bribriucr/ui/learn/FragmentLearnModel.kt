@@ -1,8 +1,4 @@
-package com.example.bribriucr.ui.profile
-
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+package com.example.bribriucr.ui.learn
 
 data class FragmentLearnModel(
     val title: String,

@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:foreground="@drawable/card_border"
-    card_view:cardBackgroundColor="#ffff"
+    card_view:cardBackgroundColor="?attr/colorOnPrimary"
     card_view:cardCornerRadius="5dp"
     card_view:cardElevation="5dp"
     card_view:cardUseCompatPadding="true"
@@ -16,7 +16,7 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="390dp"
         android:layout_height="90dp"
-        android:background="@color/white"
+        android:background="?attr/colorOnPrimary"
         android:orientation="horizontal"
         android:padding="10dp">
 
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/nombre"
-            android:textColor="@color/light_blue"
+            android:textColor="?attr/colorSecondary"
             android:textSize="20sp"
             android:textStyle="bold"
             card_view:layout_constraintEnd_toStartOf="@+id/arrowImage"
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/item"
-            android:textColor="@color/light_blue"
+            android:textColor="?attr/colorSecondary"
             android:textSize="20sp"
             android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="parent"
@@ -59,14 +59,14 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentStart="true"
-            android:background="@color/white"
+            android:background="?attr/colorOnPrimary"
             android:contentDescription="@string/flecha_derecha"
             android:padding="1dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:srcCompat="@drawable/gmts_quantum_ic_chevron_right_white_24"
-            card_view:tint="@color/light_blue" />
+            card_view:tint="?attr/colorSecondary" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

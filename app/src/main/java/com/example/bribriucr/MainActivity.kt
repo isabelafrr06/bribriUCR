@@ -3,7 +3,6 @@ package com.example.bribriucr
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
-import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -16,7 +15,7 @@ import com.example.bribriucr.db.DbHelper
 import com.example.bribriucr.ui.dashboard.DashboardFragment
 import com.example.bribriucr.ui.home.HomeFragment
 import com.example.bribriucr.ui.home.HomeModel
-import com.example.bribriucr.ui.profile.FragmentLearn
+import com.example.bribriucr.ui.learn.FragmentLearn
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.Locale
 /**
@@ -27,8 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     // Binding for accessing views in the layout
     private lateinit var binding: ActivityMainBinding
-    /**
-     * onCreate function is called when the activity is first created.
+    /** onCreate function is called when the activity is first created.
      *
      * @param savedInstanceState Bundle containing the data of the previous instance (if any).
      */
@@ -42,9 +40,6 @@ class MainActivity : AppCompatActivity() {
 
         val homeModel = HomeModel(dbHelper)
         replaceFragment(HomeFragment(homeModel, this))
-
-        // Database operations
-        val db: SQLiteDatabase = dbHelper.writableDatabase
 
         // Navigation setup
         val navView: BottomNavigationView = binding.navView
@@ -66,9 +61,9 @@ class MainActivity : AppCompatActivity() {
      * Function to display a dialog for language selection and update the application locale.
      */
     private fun changeLanguage() {
-        val listLang = arrayOf("Español", "Bribri")
+        val listLang = arrayOf(getString(R.string.espanol), getString(R.string.bribri))
         val mBuilder = AlertDialog.Builder(this)
-        mBuilder.setTitle("Escoger Idioma")
+        mBuilder.setTitle(getString(R.string.escogerIdioma))
         mBuilder.setSingleChoiceItems(listLang, -1) { dialog, which ->
             if (which == 0) {
                 setLocale("es")
@@ -88,12 +83,11 @@ class MainActivity : AppCompatActivity() {
     /**
      * Function to set the application locale based on the provided language code.
      *
-     * @param lang The language code (e.g., "es" for Spanish).
+     * @param lang The language code ("es" for Spanish).
      */
     private fun setLocale(lang: String) {
         val locale = Locale(lang)
         Locale.setDefault(locale)
-        // Log.d("MainActivity", "Locale changed to: $locale")
         val config = Configuration()
         config.setLocale(locale)
         baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
@@ -106,6 +100,7 @@ class MainActivity : AppCompatActivity() {
         finish()  // Finish the current activity
         startActivity(intent)  // Start a new instance of MainActivity
     }
+
     /**
      * Function to replace the fragment container with a new fragment.
      *
@@ -153,9 +148,9 @@ class MainActivity : AppCompatActivity() {
      */
     private fun showHelp() {
         val mBuilder = AlertDialog.Builder(this)
-        mBuilder.setTitle("Ayuda")
-        mBuilder.setMessage("Seleccione alguno de los botones con los distintos temas")
-        mBuilder.setPositiveButton("Aceptar", null)
+        mBuilder.setTitle(getString(R.string.ayuda))
+        mBuilder.setMessage(getString(R.string.mensajeAyuda))
+        mBuilder.setPositiveButton(getString(R.string.aceptar), null)
         val dialog = mBuilder.create()
         dialog.show()
     }

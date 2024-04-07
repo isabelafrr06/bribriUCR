@@ -1,6 +1,8 @@
 package com.example.bribriucr
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
@@ -8,9 +10,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bribriucr.db.DbHelper
+import kotlin.random.Random
 
 class ImageMatch : AppCompatActivity() {
 
@@ -20,6 +24,10 @@ class ImageMatch : AppCompatActivity() {
     private var dbHelper = DbHelper(this)
     private lateinit var views: ViewBinder
     private var mediaPlayer: MediaPlayer? = null
+    private var matchCount = 0
+    private var maxMatchCount = 1
+    private var assertCount = 0
+    private var failedCount = 0
 
     inner class ImageOption(val imageName: String, val image: String, val audio: String)
 
@@ -32,6 +40,7 @@ class ImageMatch : AppCompatActivity() {
         val feedbackText: TextView = activity.findViewById(R.id.feedback)
         val nextButton: Button = activity.findViewById(R.id.next_button)
         val speaker: ImageButton = activity.findViewById(R.id.sound_button)
+        val progressBar: ProgressBar = activity.findViewById(R.id.progress_bar)
         // ... add other UI element bindings
     }
 
@@ -44,24 +53,28 @@ class ImageMatch : AppCompatActivity() {
 
         // Retrieve passed topic name
         category = intent.getStringExtra("topic")!!
+
+        maxMatchCount = getRandomNumberBetween5And10()
+        views.progressBar.max = maxMatchCount
         setImageOptions() // Fetch image options from DB
         updateUiWithOptions()
+        views.nextButton.isEnabled = false
     }
 
     // Function to set image options with random selection from a category
     private fun setImageOptions() {
         val numOptions = 4
+        matchCount += 1
         val db = dbHelper.readableDatabase
-        val allImages:ArrayList<Palabra>
-        if (category == ""){
-            allImages = dbHelper.getAllImages(db) // For random
+        val arrayImages:ArrayList<Palabra> = if (category == ""){
+            dbHelper.getImagesForCategory(db, "") // For random
         }else{
-            allImages = dbHelper.getImagesForCategory(db, category) // For specific category
+            dbHelper.getImagesForCategory(db, category) // For specific category
         }
-        if (allImages.size < numOptions) {
+        if (arrayImages.size < numOptions) {
             throw IllegalArgumentException("Category '$category' has less than $numOptions images")
         }
-        val shuffledImages = allImages.shuffled() // Random order
+        val shuffledImages = arrayImages.shuffled() // Random order
         val options = mutableListOf<ImageOption>()
         val imageMap = HashMap<String, Int>() // Map image name to position
         for (i in 0 until numOptions) {
@@ -71,7 +84,9 @@ class ImageMatch : AppCompatActivity() {
         }
         this.imageOptions = options.toList()
         // Randomly choose one option as the correct image
-        correctImage = options[Math.random().toInt() % options.size]
+        val random = Random
+        val randomIndex: Int = random.nextInt(options.size)
+        correctImage = options[randomIndex]
     }
 
     private fun updateUiWithOptions() {
@@ -114,8 +129,10 @@ class ImageMatch : AppCompatActivity() {
                 // Highlight selected image
                 if (isMatch) {
                     v.setBackgroundResource(R.drawable.image_border_correct)  // Green border for correct answer
+                    assertCount+=1
                 } else {
                     v.setBackgroundResource(R.drawable.image_border_incorrect)  // Yellow border for incorrect answer
+                    failedCount+=1
                 }
 
                 // Handle next button logic after a click
@@ -128,8 +145,15 @@ class ImageMatch : AppCompatActivity() {
                     }
                     enableImageClicks()
                     // Prepare for the next image match (reset options, etc.)
-                    setImageOptions()  // Refetch image options
-                    updateUiWithOptions()  // Update UI with new options
+                    if(matchCount<maxMatchCount) {
+                        setImageOptions()  // fetch image options
+                        updateUiWithOptions()  // Update UI with new options
+                    }else{
+                        //TODO show text with number of asserts and fails
+                        showTestResultsAlert()
+                    }
+                    updateProgressBar()
+                    views.nextButton.isEnabled = false
                 }
             }
         }
@@ -171,5 +195,30 @@ class ImageMatch : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         mediaPlayer?.release()  // Release media player resources when activity is destroyed
+    }
+
+    fun getRandomNumberBetween5And10(): Int {
+        return (Math.random() * (10 - 5 + 1) + 5).toInt()
+    }
+
+    fun showTestResultsAlert() {
+        val message = "Correctas: $assertCount\n" +
+                    "Falladas: $failedCount\n"
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Resultados")
+        builder.setMessage(message)
+        builder.setPositiveButton("OK"){ _, _ ->
+            val intent = Intent(this, MainActivity::class.java)
+            this.startActivity(intent)
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    fun updateProgressBar() {
+        val progress = matchCount-1
+        views.progressBar.progress = progress
     }
 }

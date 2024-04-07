@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/navigation_learn"
-        android:name="com.example.bribriucr.ui.profile.FragmentLearn"
+        android:name="com.example.bribriucr.ui.learn.FragmentLearn"
         android:label="@string/perfil"
         tools:layout="@layout/fragment_learn" />
 </navigation>
