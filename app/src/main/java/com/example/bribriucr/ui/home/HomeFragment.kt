@@ -44,15 +44,20 @@ class HomeFragment(private val homeModel: HomeModel, context: Context) : Fragmen
         startActivity(intent)
     }
 
-
     /**
      * Fetches topic cards and updates the UI.
      */
     private fun fetchTopicCards() {
         val topics = homeModel.fetchTopicCards()
+        listaTemas.clear()
         listaTemas.addAll(topics)
+        adapter.notifyDataSetChanged()
     }
 
+    override fun onResume() {
+        super.onResume()
+        fetchTopicCards()
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

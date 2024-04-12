@@ -49,6 +49,7 @@ class DbHelper(context: Context) :
     private val createTablaCategorias =
         "CREATE TABLE $Tabla_Categoria( IdCategoria INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "NombreCategoria TEXT NOT NULL, ImagenCategoria TEXT, PorcentajeCategoria INTEGER);"
+
     /**
      * Inserts a new food item into the database.
      *
@@ -83,28 +84,7 @@ class DbHelper(context: Context) :
     override fun onCreate(sqLiteDatabase: SQLiteDatabase) {
         sqLiteDatabase.execSQL(createTablaCategorias)
         sqLiteDatabase.execSQL(createTablapalabra)
-        sqLiteDatabase.beginTransaction()  // Start a transaction for efficiency
-        try {
-            val insertStatement = "INSERT INTO $Tabla_Categoria (NombreCategoria, ImagenCategoria) VALUES (?, ?)"
-            val compiledStatement = sqLiteDatabase.compileStatement(insertStatement)
-            val categories = listOf("Animales", "Vegetales", "Utensilios", "Recetas")
-            // Images representing each category
-            val images = listOf(R.drawable.sawe.toString(),
-                R.drawable.quelite.toString(),
-                R.drawable.cuchillo.toString(),
-                R.drawable.chichas4.toString())
-
-            for (i in categories.indices) {
-                compiledStatement.bindString(1, categories[i])
-                compiledStatement.bindString(2, images[i])
-                compiledStatement.executeInsert()
-            }
-            sqLiteDatabase.setTransactionSuccessful()  // Commit changes if no errors
-        } catch (e: Exception) {
-            // Handle potential insert errors (optional)
-        } finally {
-            sqLiteDatabase.endTransaction()  // End transaction regardless of success or failure
-        }
+        insertInitialCategoryData(sqLiteDatabase)
 
         try {
             // Open the "recetario.json" file from the assets folder (using "use")
@@ -132,6 +112,31 @@ class DbHelper(context: Context) :
             Log.e(TAG, "Error parsing JSON", e)
         }
     }
+
+    private fun insertInitialCategoryData(db: SQLiteDatabase) {
+        db.beginTransaction()  // Start a transaction for efficiency
+        try {
+            val insertStatement = "INSERT INTO $Tabla_Categoria (NombreCategoria, ImagenCategoria) VALUES (?, ?)"
+            val compiledStatement = db.compileStatement(insertStatement)
+            val categories = listOf("Animales", "Vegetales", "Utensilios")
+            // Images representing each category
+            val images = listOf(R.drawable.sawe.toString(),
+                R.drawable.quelite.toString(),
+                R.drawable.cuchillo.toString())
+
+            for (i in categories.indices) {
+                compiledStatement.bindString(1, categories[i])
+                compiledStatement.bindString(2, images[i])
+                compiledStatement.executeInsert()
+            }
+            db.setTransactionSuccessful()  // Commit changes if no errors
+        } catch (e: Exception) {
+            // Handle potential insert errors (optional)
+        } finally {
+            db.endTransaction()  // End transaction regardless of success or failure
+        }
+    }
+
     /**
      * Inserts data from a recipe JSON object into a SQLite database.
      *
@@ -144,7 +149,7 @@ class DbHelper(context: Context) :
      * @param recetario The JSONObject containing recipe data.
      */
     private fun insertDataFromRecetario(db: SQLiteDatabase, recetario: JSONObject) {
-        val categories = listOf("Animales", "Vegetales", "Utensilios", "Pasos")
+        val categories = listOf("Animales", "Vegetales", "Utensilios")
         for (category in categories) {
             val list = recetario.getJSONArray(category)
             for (i in 0 until list.length()) {
@@ -166,7 +171,6 @@ class DbHelper(context: Context) :
     }
     /**
      * Called when the database needs to be upgraded.
-     *
      * This method drops the existing table and recreates it with the new schema.
      *
      * @param sqLiteDatabase The database instance.
@@ -178,26 +182,12 @@ class DbHelper(context: Context) :
         onCreate(sqLiteDatabase)
     }
 
-    /** Inserts a new word (food item, utensil, step) into the database.
-    *
-    * @param palabra The word object containing information to insert.
-    */
-    fun insertarPalabra(palabra: Palabra ){
-        val db = writableDatabase
-        val values = ContentValues().apply {
-            put(ColumnaNombre, palabra.nombrePalabra)
-            put(ColumnaImagen, palabra.rutaImagen)
-            put(ColumnaAudio, palabra.rutaAudio)
-        }
-        db.insert(Tabla_Palabra, null, values)
-        db.close()
-    }
     /** Retrieves all categories from the database.
      *
      * @param sqLiteDatabase The database instance.
      * @return A list of `Categoria` objects representing all categories.
      */
-    fun getCategorias(sqLiteDatabase: SQLiteDatabase): ArrayList<Categoria> {
+    fun getCategories(sqLiteDatabase: SQLiteDatabase): ArrayList<Categoria> {
         val query = "select * from $Tabla_Categoria;"
         val cursor: Cursor = sqLiteDatabase.rawQuery(query, null)
         val categorias = ArrayList<Categoria>()
@@ -263,13 +253,59 @@ class DbHelper(context: Context) :
         return imagesList
     }
 
-    fun updateAprendido(db: SQLiteDatabase, itemName: String, aprendido: Boolean) {
+    fun updateAprendido(db: SQLiteDatabase, itemName: String, aprendido: Boolean, categoria: String) {
         val updateQuery = "UPDATE $Tabla_Palabra SET Aprendido = ? WHERE $ColumnaNombre = ?"
         val contentValues = ContentValues().apply {
             put("Aprendido", aprendido)
-            put("$ColumnaNombre", itemName)  // Assuming 'nombre' is the unique identifier for items
+            put(ColumnaNombre, itemName)  // Assuming 'nombre' is the unique identifier for items
         }
-        db.update("$Tabla_Palabra", contentValues, "$ColumnaNombre = ?", arrayOf(itemName))
+        db.update(Tabla_Palabra, contentValues, "$ColumnaNombre = ?", arrayOf(itemName))
+        updateCategoriaPorcentaje(db, categoria)
+    }
+
+    private fun calculatePorcentaje(db: SQLiteDatabase, categoria: String): Int {
+        val totalWordsQuery = "SELECT COUNT(*) FROM $Tabla_Palabra WHERE NombreCategoria = ?"
+        val learnedWordsQuery = "SELECT COUNT(*) FROM $Tabla_Palabra WHERE NombreCategoria = ? AND Aprendido = 1"
+
+        val compiledTotalStatement = db.compileStatement(totalWordsQuery)
+        val compiledLearnedStatement = db.compileStatement(learnedWordsQuery)
+
+        compiledTotalStatement.bindString(1, categoria)
+        compiledLearnedStatement.bindString(1, categoria)
+
+        val totalCursor = db.rawQuery(totalWordsQuery, arrayOf(categoria))  // Execute the query
+        val learnedCursor = db.rawQuery(learnedWordsQuery, arrayOf(categoria))  // Execute the query
+
+        var totalWords = 0
+        var learnedWords = 0
+
+        if (totalCursor.moveToFirst()) {
+            totalWords = totalCursor.getInt(0)  // Assuming the first column is the count
+        }
+
+        if (learnedCursor.moveToFirst()) {
+            learnedWords = learnedCursor.getInt(0)  // Assuming the first column is the count
+        }
+
+        totalCursor.close()
+        learnedCursor.close()
+        var porcentaje = 0F
+        if (totalWords > 0) {
+            porcentaje = (learnedWords.toFloat() / totalWords) * 100
+        } else {
+            Log.w("Calculate Percentage", "Category not found")
+        }
+        return porcentaje.toInt()
+    }
+
+    // Function to update porcentajeCategoria in the database
+    private fun updateCategoriaPorcentaje(db: SQLiteDatabase, categoria: String) {
+        val porcentaje = calculatePorcentaje(db, categoria)
+        val updateStatement = "UPDATE $Tabla_Categoria SET PorcentajeCategoria = ? WHERE NombreCategoria = ?"
+        val compiledStatement = db.compileStatement(updateStatement)
+        compiledStatement.bindLong(1, porcentaje.toLong())
+        compiledStatement.bindString(2, categoria)
+        compiledStatement.executeUpdateDelete()  // Execute the update
     }
 
 }

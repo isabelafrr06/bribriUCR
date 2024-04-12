@@ -90,6 +90,7 @@ class ImageMatch : AppCompatActivity() {
     }
 
     private fun updateUiWithOptions() {
+        val db = dbHelper.readableDatabase
         views.textToGuess.text = correctImage?.imageName  // Update word to guess
         views.speaker.setOnClickListener {
             playSound(correctImage?.audio)  // Play speaker sound on button click
@@ -130,6 +131,7 @@ class ImageMatch : AppCompatActivity() {
                 if (isMatch) {
                     v.setBackgroundResource(R.drawable.image_border_correct)  // Green border for correct answer
                     assertCount+=1
+                    correctImage?.let { dbHelper.updateAprendido(db, it.imageName, true, category) }
                 } else {
                     v.setBackgroundResource(R.drawable.image_border_incorrect)  // Yellow border for incorrect answer
                     failedCount+=1
@@ -197,7 +199,7 @@ class ImageMatch : AppCompatActivity() {
         mediaPlayer?.release()  // Release media player resources when activity is destroyed
     }
 
-    fun getRandomNumberBetween5And10(): Int {
+    private fun getRandomNumberBetween5And10(): Int {
         return (Math.random() * (10 - 5 + 1) + 5).toInt()
     }
 

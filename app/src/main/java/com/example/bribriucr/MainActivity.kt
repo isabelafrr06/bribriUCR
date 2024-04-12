@@ -101,9 +101,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)  // Start a new instance of MainActivity
     }
 
-    /**
-     * Function to replace the fragment container with a new fragment.
-     *
+    /** Function to replace the fragment container with a new fragment.
      * @param fragment The fragment to be displayed.
      */
     private fun replaceFragment(fragment: Fragment) {
