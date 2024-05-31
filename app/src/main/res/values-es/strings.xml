@@ -35,4 +35,8 @@
     <string name="bribri">Bribri</string>
     <string name="mensajeAyuda">Seleccione alguno de los botones con los distintos temas para empezar a jugar. Luego en la parte superior aparecerá un texto, debe buscar entre las imágenes la correspondiente a la palabra mostrada.</string>
     <string name="aceptar">Aceptar</string>
+    <string name="correctas">Correctas</string>
+    <string name="incorrectas">Incorrectas</string>
+    <string name="resultados">Resultados</string>
+    <string name="vocabulario">Vocabulario</string>
 </resources>

@@ -25,14 +25,12 @@ class WordCardAdapter(private val cardData: List<FragmentLearnModel>) :
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         val cardItem = cardData[position]
-        holder.cardImage.setImageResource(cardItem.imageResourceId)
-        holder.cardText.text = cardItem.description
+        holder.cardImage.setImageResource(cardItem.imagen)
+        holder.cardText.text = cardItem.nombre
 
         // Handle sound icon clicks (optional)
         holder.soundIcon.setOnClickListener {
             // Play audio using the audioResourceId from the model data
-            // You might need a media player or sound library here
-            // Update the "isLearned" flag in the model if relevant
         }
     }
 

@@ -151,7 +151,6 @@ class ImageMatch : AppCompatActivity() {
                         setImageOptions()  // fetch image options
                         updateUiWithOptions()  // Update UI with new options
                     }else{
-                        //TODO show text with number of asserts and fails
                         showTestResultsAlert()
                     }
                     updateProgressBar()
@@ -204,11 +203,11 @@ class ImageMatch : AppCompatActivity() {
     }
 
     fun showTestResultsAlert() {
-        val message = "Correctas: $assertCount\n" +
-                    "Falladas: $failedCount\n"
+        val message = getString(R.string.correctas) + ": $assertCount\n" +
+                    getString(R.string.incorrectas) + ": $failedCount\n"
 
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Resultados")
+        builder.setTitle(getString(R.string.resultados))
         builder.setMessage(message)
         builder.setPositiveButton("OK"){ _, _ ->
             val intent = Intent(this, MainActivity::class.java)
