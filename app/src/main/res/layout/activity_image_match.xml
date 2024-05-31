@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:max="100"
         android:progress="0"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:scaleY="4"  style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -34,16 +34,16 @@
         android:id="@+id/sound_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:layout_margin="10dp"
         android:backgroundTint="?attr/colorPrimary"
         android:contentDescription="@string/sonido"
         android:padding="15dp"
         android:src="@drawable/ic_sound_24"
-        app:tint="?attr/colorOnPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_to_guess"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/progress_bar"
+        app:tint="?attr/colorOnPrimary" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
