@@ -9,6 +9,6 @@ class TopicCard {
     constructor(nombre: String, imagen: String, porcentaje: String) {
         this.name = nombre
         this.image = imagen
-        this.percentage = porcentaje
+        this.percentage = porcentaje + "%"
     }
 }
